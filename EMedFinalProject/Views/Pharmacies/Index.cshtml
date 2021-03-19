@@ -1,0 +1,28 @@
+﻿@model IEnumerable<EMedFinalProject.Models.Pharmacy>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_PharmacyLayout.cshtml";
+}
+
+<h2 style="color:blue; margin-bottom:30px;">E<span class="Dash" style="color: pink;">-</span><span class="Dash" style="color:Red;">Med</span><span style="Color:black; float: right;">Pharmacy Records</span></h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Pharmacy Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@(Url.Action("Index","Branches", new { id=item.PharmacyID}))">@Html.DisplayFor(modelItem => item.Name)</a> 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

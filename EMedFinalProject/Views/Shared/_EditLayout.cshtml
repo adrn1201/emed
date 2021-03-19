@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin|Edit Branch Record</title>
+
+
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <style>
+
+           .topnav {
+              overflow: hidden;
+              background-color: #333;
+           }
+
+          .topnav a {
+              float: left;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+          }
+
+          .topnav a:hover {
+             background-color: #ddd;
+             color: black;
+          }
+
+         .topnav a.active {
+             background-color: #4CAF50;
+             color: white;
+         }
+
+        .topnav-right {
+            float: right;
+        }
+        .required {
+            color: red;
+        }
+
+        .form-group .submit {
+            background-color: #00cc00;
+            border: 0;
+            box-shadow: none;
+            padding: 7px 30px;
+            min-width: 100px;
+            border-radius: 20px;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .form-group .reset {
+            background-color: var(--red);
+            border: 0;
+            box-shadow: none;
+            padding: 7px 30px;
+            min-width: 100px;
+            border-radius: 20px;
+            color: var(--white);
+            font-weight: 500;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+            <h1><a asp-action="Home" class="logo">System Administrator</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li>
+                    <a asp-action="Home">Homepage</a>
+                </li>
+                <li>
+                    <a asp-action="Index"> Branch Records</a>
+                </li>
+                <li>
+                    <a href=@Url.Action("Index", "Pharmacies")>Pharmacies</a>
+                </li>
+                <li>
+                    <a asp-action="Create">Add New Branch</a>
+                </li>
+                <li>
+                    <a href="confirmedorders.html">Confirmed Orders</a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#myModal">Log out</a>
+                </li>
+            </ul>
+
+        </nav>
+        <!-- The Modal -->
+        <form id="logout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Home", "Branches", new { area = "" })">
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Logging out</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            Are you sure?
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> <a href="#" type="button" class="btn btn-success" data-dismiss="modal" onclick="document.getElementById('logout').submit(); return false;">Log out</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+        </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

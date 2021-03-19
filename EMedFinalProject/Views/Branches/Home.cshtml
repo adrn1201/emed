@@ -1,0 +1,273 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Admin|Homepage</title>
+
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <style>
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .topnav a {
+           float: left;
+           color: #f2f2f2;
+           text-align: center;
+           padding: 14px 16px;
+           text-decoration: none;
+           font-size: 17px;
+        }
+
+        .topnav a:hover {
+           background-color: #ddd;
+           color: black;
+        }
+
+        .topnav a.active {
+           background-color: #4CAF50;
+           color: white;
+        }
+
+        .topnav-right {
+            float: right;
+        }
+
+        .time {
+            width: 320px;
+            padding: 10px;
+            border: 5px solid gray;
+            margin: 0;
+        }
+
+        .take_meals_opt {
+            display: block;
+            width: 300px;
+            height: 200px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 150px;
+            margin: 0 10px 50px 0;
+            padding: 10px 21px;
+            text-transform: uppercase;
+            font-family: 'Arial';
+            font-weight: 400;
+            font-size: 16px;
+            text-transform: uppercase;
+            color: white; /*#3e3e3e;*/
+            background: #00ff80; /*#7cb289;*/
+            border-bottom: 1px solid #343434;
+            transition: all 0.4s ease-in-out;
+            -moz-transition: all 0.4s ease-in-out;
+            -webkit-transition: all 0.4s ease-in-out;
+            -o-transition: all 0.4s ease-in-out;
+            float: left;
+            margin-left: 180px;
+            margin-right: 130px;
+        }
+
+        .pharmacies {
+            display: block;
+            width: 300px;
+            height: 200px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 150px;
+            margin: 0 10px 50px 0;
+            padding: 10px 21px;
+            text-transform: uppercase;
+            font-family: 'Arial';
+            font-weight: 400;
+            font-size: 16px;
+            text-transform: uppercase;
+            color: white; /*#3e3e3e;*/
+            background: #33ccff; /*#7cb289;*/
+            border-bottom: 1px solid #343434;
+            transition: all 0.4s ease-in-out;
+            -moz-transition: all 0.4s ease-in-out;
+            -webkit-transition: all 0.4s ease-in-out;
+            -o-transition: all 0.4s ease-in-out;
+            float: left;
+            margin-left: 180px;
+            margin-right: 130px;
+        }
+
+        .viewbranches {
+            display: block;
+            width: 300px;
+            height: 200px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 150px;
+            margin: 0 10px 10px 0;
+            padding: 10px 21px;
+            text-transform: uppercase;
+            font-family: 'Arial';
+            font-weight: 400;
+            font-size: 16px;
+            text-transform: uppercase;
+            color: white; /*#3e3e3e;*/
+            background: #ff99cc; /*#7cb289;*/
+            border-bottom: 1px solid #343434;
+            transition: all 0.4s ease-in-out;
+            -moz-transition: all 0.4s ease-in-out;
+            -webkit-transition: all 0.4s ease-in-out;
+            -o-transition: all 0.4s ease-in-out;
+            float: left;
+            margin-left: 70px;
+            margin-right: 130px;
+        }
+
+        .customerrecords {
+            display: block;
+            width: 300px;
+            height: 200px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 150px;
+            margin: 0 10px 10px 0;
+            padding: 10px 21px;
+            text-transform: uppercase;
+            font-family: 'Arial';
+            font-weight: 400;
+            font-size: 16px;
+            text-transform: uppercase;
+            color: white; /*#3e3e3e;*/
+            background: #ff9966; /*#7cb289;*/
+            border-bottom: 1px solid #343434;
+            transition: all 0.4s ease-in-out;
+            -moz-transition: all 0.4s ease-in-out;
+            -webkit-transition: all 0.4s ease-in-out;
+            -o-transition: all 0.4s ease-in-out;
+            float: left;
+            margin-left: 70px;
+            margin-right: 130px;
+        }
+
+        .title {
+            display: inline-block;
+            font-family: 'Arial';
+            color: black;
+            Background-color: #e6e6e6;
+            padding: 10px 25px 10px 25px;
+            margin: 20px 0 40px 430px;
+        }
+
+        .clear {
+            clear: both;
+            display: block;
+            overflow: hidden;
+            visibility: hidden;
+            width: 0;
+            height: 0
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+            <h1><a asp-action="Home" class="logo">System Administrator</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a asp-action="Home">Homepage</a>
+                </li>
+                <li>
+                    <a asp-action="Index"> Branch Records</a>
+                </li>
+                <li>
+                    <a href=@Url.Action("Index", "Pharmacies")>Pharmacies</a>
+                </li>
+                <li>
+                    <a asp-action="Create">Add New Branch</a>
+                </li>
+                <li>
+                    <a href="confirmedorders.html">Confirmed Orders</a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#myModal">Log out</a>
+                </li>
+            </ul>
+        </nav>
+        <form id="logout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Home", "Branches", new { area = "" })">
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Logging out</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            Are you sure?
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> <a href="#" type="button" class="btn btn-success" data-dismiss="modal" onclick="document.getElementById('logout').submit(); return false;">Log out</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+            <!-- Page Content  -->
+            <div id="content" class="p-4 p-md-5 pt-5">
+
+                <div class="container">
+                    <h2 style="color:blue;">E<span class="Dash" style="color: pink;">-</span><span class="Dash" style="color:Red;">Med</span><span style="Color:black; float: right;">Homepage</span></h2>
+                    <br>
+                    <div><h1 class="title" id="time"></h1></div>
+                    <br>
+                    <a asp-action="Create"><div id="pickup" class="take_meals_opt">Add New Branch </div></a>
+                    <a asp-action="Index"><div id="delivery" class="viewbranches">View Branches</div></a>
+                    <a href=@Url.Action("Index", "Pharmacies")><div id="pickup" class="pharmacies">Pharmacies </div></a>
+                    <a href="confirmedorders.html"><div id="delivery" class="customerrecords">Confirmed Orders</div></a>
+
+
+
+                </div>
+            </div>
+    </div>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/js/popper.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/js/main.js"></script>
+        <script>
+
+            var d = new Date();
+            var n = d.toLocaleTimeString();
+            document.getElementById("time").innerHTML = n;
+
+            $("#delivery").click(function () {
+                $("#divde").show();
+                $("divpick").hide();
+            });
+
+        </script>
+
+</body>
+</html>

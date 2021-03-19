@@ -1,0 +1,67 @@
+﻿@model EMedFinalProject.Models.BranchesViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 style="color:blue; margin-bottom:30px;">E<span class="Dash" style="color: pink;">-</span><span class="Dash" style="color:Red;">Med</span><span style="Color:black; float: right;">Branch Records</span></h2>
+<div style="margin-bottom:20px;">
+    <a asp-action="Create">Create a new record</a>
+</div>
+<table class="table" id="records">
+    <thead>
+        <tr>
+            <th>
+               Branch Location
+            </th>
+            <th>
+                ZipCode
+            </th>
+            <th>
+               DateAdded
+            </th>
+            <th>
+                DateModified
+            </th>
+            <th>
+                Pharmacy
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Branches)
+        {
+            <tr>
+                <td>
+                   @item.BranchLocation
+                </td>
+                <td>
+                   @item.ZipCode
+                </td>
+                <td>
+                    @item.DateAdded
+                </td>
+                <td>
+                    @item.DateModified
+                </td>
+                <td>
+                    @item.Pharmacy.Name
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-action="Edit" asp-route-id="@item.BranchId"><i class="fa fa-edit"></i></a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.BranchId" onclick='return confirm("Are you sure?");'><i class="fa fa-remove"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#records').DataTable();
+        });
+    </script>
+}
