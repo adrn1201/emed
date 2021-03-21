@@ -16,5 +16,8 @@ namespace EMedFinalProject.Data
         }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Pharmacy> Pharmacies { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrdersDetail> OrderDetails { get; set; }
     }
 }
