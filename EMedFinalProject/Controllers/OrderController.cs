@@ -17,6 +17,11 @@ namespace EMedFinalProject.Controllers
         {
             _context = context;
         }
+
+        public IActionResult Home()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             return View();
