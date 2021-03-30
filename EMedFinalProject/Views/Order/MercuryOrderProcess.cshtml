@@ -1,0 +1,281 @@
+﻿@model EMedFinalProject.Models.OrderViewModel;
+   
+@{
+    Layout = "~/Views/Shared/_OrderLayout .cshtml";
+    ViewData["Title"] = "Mercury Order Now";
+}
+<form id="regForm" action="/action_page.php">
+
+    <!-- One "tab" for each step in the form: -->
+    <div class="tab" id="step-1">
+        <ul class="active-button">
+            <li class="active">
+                <a href="#step-1">
+                    <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
+                </a>
+            </li>
+        </ul>
+        <h3 id="stepHeader">Personal Details</h3>
+        <div class="row">
+            <div class="col-sm-6">
+                Last Name:<span class="required">*</span>
+                <p><input placeholder="Last name" oninput="this.className = ''" name="fname"></p>
+            </div>
+            <div class="col-sm-6">
+                First Name:<span class="required">*</span>
+                <p><input placeholder="First name" oninput="this.className = ''" name="lname"></p>
+            </div>
+        </div>
+        Contact No.<span class="required">*</span>
+        <p><input placeholder="Contact No" oninput="this.className = ''" name="contactNo"></p>
+        Email:<span class="required">*</span>
+        <p><input placeholder="Email" oninput="this.className = ''" name="email"></p>
+        Delivery Address:<span class="required">*</span>
+        <p><input placeholder="Delivery Address" oninput="this.className = ''" name="delAdd"></p>
+    </div>
+    <div class="tab" id="step-1">
+        <ul class="active-button">
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#step-1">
+                    <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
+                </a>
+            </li>
+        </ul>
+        <h3 id="stepHeader">Order Items</h3>
+        <div class="input_fields_wrap">
+            <div class="row">
+                <div class="col-sm-6">
+                    Product Name:<span class="required">*</span>
+                    <input type="text" placeholder="Enter Product" oninput="this.className = ''" name="mytext[]">
+                </div>
+                <div class="col-sm-3">
+                    Quantity:<span class="required">*</span>
+                    <input type="number" placeholder="Quantity" oninput="this.className = ''" name="mytext[]">
+                </div>
+                <div class="col-sm-3">
+                    Miligrams:<span class="required">*</span>
+                    <input type="number" placeholder="Miligrams" oninput="this.className = ''" name="mytext[]">
+                </div>
+            </div>
+        </div>
+        <button class="add_field_button">+ Add More Products</button>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea2">Instructions:</label>
+            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" style="resize: none;  border: 1px solid #aaaaaa;
+                padding: 10px" placeholder="Type your Instructions here..."></textarea>
+        </div>
+    </div>
+    <div class="tab">
+        <ul class="active-button">
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
+                </a>
+            </li>
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#step-1">
+                    <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
+                </a>
+            </li>
+        </ul>
+        <h3 id="stepHeader">Upload Prescription and Valid ID</h3>
+        <!-- <p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
+        <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
+        <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p> -->
+    </div>
+    <div class="tab">
+        <ul class="active-button">
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
+                </a>
+            </li>
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
+                </a>
+            </li>
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#step-1">
+                    <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
+                </a>
+            </li>
+        </ul>
+        <h3 id="stepHeader">Choose a Mercury Branch</h3>
+        <!-- <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+        <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p> -->
+    </div>
+    <div class="tab">
+        <ul class="active-button">
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
+                </a>
+            </li>
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
+                </a>
+            </li>
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
+                </a>
+            </li>
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#step-1">
+                    <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-1">
+                    <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
+                </a>
+            </li>
+        </ul>
+        <h3>Choose a Payment Method</h3>
+        <!-- <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+        <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p> -->
+    </div>
+    <div class="tab">
+        <ul class="active-button">
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
+                </a>
+            </li>
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
+                </a>
+            </li>
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
+                </a>
+            </li>
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
+                </a>
+            </li>
+            <li class="success">
+                <a href="#step-1">
+                    <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#step-1">
+                    <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
+                </a>
+            </li>
+        </ul>
+        <h3 id="stepHeader">Confirm Information and Orders</h3>
+        <!-- <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+        <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p> -->
+    </div>
+    <div>
+        <div class="button-row">
+            <button type="button" id="prevBtn" onclick="nextPrev(-1)" class="previous">Previous</button>
+            <button type="button" id="nextBtn" onclick="nextPrev(1)" class="next">Next</button>
+        </div>
+    </div>
+    <!-- Circles which indicates the steps of the form: -->
+    <div style="text-align:center;margin-top:40px;">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+    </div>
+</form>

@@ -1,0 +1,177 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    /* background-color: #f1f1f1; */
+    background-color: white;
+}
+
+#regForm {
+    background-color: #ffffff;
+    margin: 160px auto;
+    padding: 40px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+    box-shadow: 3px 4px 8px 3px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 81%;
+    min-width: 300px;
+}
+
+#stepHeader {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+input {
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #aaaaaa;
+    /* font-family: Raleway; */
+}
+    /* Mark input boxes that gets an error on validation: */
+
+    input.invalid {
+        background-color: #ffdddd;
+    }
+
+.tab {
+    display: none;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+    background-color: white;
+}
+
+    .step.active {
+        opacity: 1;
+        background-color: white;
+    }
+    /* Mark the steps that are finished and valid: */
+
+    .step.finish {
+        /* background-color: #4CAF50; */
+        background-color: white;
+    }
+
+.active-button {
+    display: table;
+    margin: auto;
+    padding-left: 0;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+    .active-button li {
+        display: inline-block;
+        width: 180px;
+    }
+
+        .active-button li .round-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ccc;
+            display: block;
+            color: #000;
+            text-align: center;
+            font-family: 'poppins';
+            font-weight: 500;
+            line-height: 30px;
+            max-width: 100%;
+            margin: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .active-button li.success .round-btn {
+            background-color: limegreen;
+            color: var(--white);
+        }
+
+        .active-button li.active .round-btn {
+            background: linear-gradient(to right, rgb(234, 30, 36) 0%, rgb(234, 30, 36) 100%);
+            color: var(--white);
+        }
+
+        .active-button li:not(:first-child) .round-btn:before {
+            position: absolute;
+            content: ' ';
+            width: 150px;
+            height: 3px;
+            background-color: #ccc;
+            left: -150px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: -1;
+        }
+
+        .active-button li.active:not(:first-child) .round-btn:before {
+            background-color: var(--green)
+        }
+
+        .active-button li.success:not(:first-child) .round-btn:before {
+            background-color: var(--green)
+        }
+
+.required {
+    color: red;
+}
+
+.button-row {
+    display: table;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+    .button-row .next {
+        /* background: linear-gradient(to right, rgb(234, 30, 36) 0%, rgb(234, 30, 36) 100%); */
+        border: 0;
+        box-shadow: none;
+        padding: 7px 30px;
+        min-width: 100px;
+        border-radius: 20px;
+        color: var(--white);
+        font-weight: 500;
+        margin-left: 5px;
+    }
+
+    .button-row .previous {
+        background-color: var(--orange);
+        border: 0;
+        box-shadow: none;
+        padding: 7px 30px;
+        min-width: 100px;
+        border-radius: 20px;
+        color: var(--white);
+        font-weight: 500;
+    }
+
+.input_fields_wrap {
+    margin-bottom: 20px;
+}
+
+.add_field_button {
+    background: #2eb82e;
+    border: 0;
+    box-shadow: none;
+    padding: 7px 30px;
+    min-width: 100px;
+    border-radius: 20px;
+    color: var(--white);
+    font-weight: 500;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>@ViewData["Title"] | E-Med</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/Homepage prop/assets/img/E-Med.png" rel="icon" />
+    <link href="~/Homepage prop/assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/Homepage prop/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Homepage prop/assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="~/Homepage prop/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="~/Homepage prop/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Homepage prop/assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link href="~/Homepage prop/assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href ="~/css/Wizard.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="~/Homepage prop/assets/css/style.css" rel="stylesheet" />
+
+    <!--Extra-->
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+
+    <!-- =======================================================
+    * Template Name: BizLand - v1.2.1
+    * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+<body>
+    <!-- ======= Top Bar ======= -->
+    <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
+        <div class="container d-flex">
+        </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+
+            <h1 class="logo mr-auto"><a href="@Url.Action("Home", "Order")"><span style="color:blue;">E</span><span class="Dash" style="color: pink;">-</span><span class="Dash" style="color:Red;">Med</span></a></h1>
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li><a href=@Url.Action("Home", "Order")>Home</a></li>
+                    <li><a href="/Order/Home/#about">About</a></li>
+                    <li class="active"><a href="/Order/Home/#services">Order Now</a></li>
+                    <li><a href="/Order/Home/#faq">F.A.Q</a></li>
+                    <li><a href="/Order/Home/#contact">Contact Us</a></li>
+
+                </ul>
+            </nav>
+            <!-- .nav-menu -->
+
+        </div>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+    <!-- ======= Footer ======= -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+
+        <div class="footer-newsletter">
+            <div class="container">
+               
+            </div>
+        </div>
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3><span style="color:blue;">E</span><span class="Dash" style="color: pink;">-</span><span class="Dash" style="color:Red;">Med</span></h3>
+                        <p>
+                            Stay at Home <br> Be Healthy<br> Stay Healthy <br><br>
+
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Website Links</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="@Url.Action("Home", "Order")">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/Order/Home/#about">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/Order/Home/#services">Order Now</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="/Order/Home/#faq">F.A.Q</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Order from a Pharmacy</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">TGP</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Watsons</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="~/Order/MercuryOrderProcess">Mercury Drug</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Any Concerns?</h4>
+                        <p><a href="/Order/Home/#contact">Send us a Message</a></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-4">
+            <div class="copyright">
+                &copy; Copyright <strong><span>E-Med</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+               
+                Designed by <a href="https://bootstrapmade.com/">E-Med group</a>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/Homepage prop/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Homepage prop/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Homepage prop/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Homepage prop/assets/vendor/php-email-form/validate.js"></script>
+    <script src="~/Homepage prop/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="~/Homepage prop/assets/vendor/counterup/counterup.min.js"></script>
+    <script src="~/Homepage prop/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="~/Homepage prop/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/Homepage prop/assets/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Homepage prop/assets/vendor/aos/aos.js"></script>
+    <script src="~/js/wizard.js"></script>
+    <!-- Template Main JS File -->
+    <script src="~/Homepage prop/assets/js/main.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
