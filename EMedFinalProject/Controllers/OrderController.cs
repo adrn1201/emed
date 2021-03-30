@@ -34,13 +34,8 @@ namespace EMedFinalProject.Controllers
             return View();
         }
 
-        public IActionResult OrderProcess()
-        {
-            return View();
-        }
-
         [HttpPost]
-        public async Task<IActionResult> OrderProcess(OrderViewModel record) //IFormFile file)
+        public async Task<IActionResult> MercuryOrderProcess(OrderViewModel record) //IFormFile file)
         {
             //if (ModelState.IsValid)
             //{
