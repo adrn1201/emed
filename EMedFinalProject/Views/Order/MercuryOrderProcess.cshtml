@@ -4,7 +4,15 @@
     Layout = "~/Views/Shared/_OrderLayout .cshtml";
     ViewData["Title"] = "Mercury Order Now";
 }
-<form id="regForm" action="/action_page.php">
+<div id="ordersProc" class="d-flex align-items-center">
+    <div class="container" data-aos="zoom-out" data-aos-delay="100">
+        <h1 style="color:red; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            mercury drug
+        </h1>
+        <h2>Online Order Form</h2>
+    </div>
+</div>
+<form id="regForm" action="/action_page.php" data-aos="fade-up">
 
     <!-- One "tab" for each step in the form: -->
     <div class="tab" id="step-1">

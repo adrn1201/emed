@@ -1,0 +1,112 @@
+﻿body {
+}
+#ordersProc {
+    width: 100%;
+    height: 60vh;
+    background: url("../img/OrderProcess.png") top left;
+    background-size: cover;
+    position: relative;
+}
+
+    #ordersProc:before {
+        content: "";
+        background: rgba(255, 255, 255, 0.6);
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    #ordersProc .container {
+        position: relative;
+        padding-top: 132px;
+    }
+
+@media (max-width: 992px) {
+    #ordersProc .container {
+        padding-top: 58px;
+    }
+}
+
+#ordersProc h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #222222;
+    font-family: "Poppins", sans-serif;
+}
+
+    #ordersProc h1 span {
+        color: #106eea;
+    }
+
+#ordersProc h2 {
+    color: #555555;
+    margin: 5px 0 30px 0;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+#ordersProc .btn-get-started {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 10px 28px;
+    border-radius: 4px;
+    transition: 0.5s;
+    color: #fff;
+    background: #106eea;
+}
+
+    #ordersProc .btn-get-started:hover {
+        background: #247cf0;
+    }
+
+#ordersProc .btn-watch-video {
+    font-size: 16px;
+    display: inline-block;
+    padding: 10px 25px 8px 40px;
+    transition: 0.5s;
+    margin-left: 25px;
+    color: #222222;
+    position: relative;
+    font-weight: 600;
+}
+
+@media (min-width: 1024px) {
+    #ordersProc {
+        background-attachment: fixed;
+    }
+}
+
+@media (max-width: 768px) {
+    #ordersProc {
+        height: 100vh;
+    }
+
+        #ordersProc h1 {
+            font-size: 28px;
+            line-height: 36px;
+        }
+
+        #ordersProc h2 {
+            font-size: 18px;
+            line-height: 24px;
+            margin-bottom: 30px;
+        }
+
+        #ordersProc .btn-get-started, #ordersProc .btn-watch-video {
+            font-size: 13px;
+        }
+}
+
+@media (max-height: 500px) {
+    #ordersProc {
+        height: 120vh;
+    }
+}

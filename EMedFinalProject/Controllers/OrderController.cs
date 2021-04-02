@@ -28,7 +28,10 @@ namespace EMedFinalProject.Controllers
         {
             return View();
         }
-
+        public IActionResult MercuryTerms()
+        {
+            return View();
+        }
         public IActionResult MercuryOrderProcess()
         {
             return View();
