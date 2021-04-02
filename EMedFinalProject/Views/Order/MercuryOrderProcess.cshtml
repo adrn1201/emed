@@ -1,5 +1,5 @@
 ﻿@model EMedFinalProject.Models.OrderViewModel;
-   
+
 @{
     Layout = "~/Views/Shared/_OrderLayout .cshtml";
     ViewData["Title"] = "Mercury Order Now";
@@ -13,7 +13,7 @@
     </div>
 </div>
 <form id="regForm" action="/action_page.php" data-aos="fade-up">
-
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <!-- One "tab" for each step in the form: -->
     <div class="tab" id="step-1">
         <ul class="active-button">
@@ -49,241 +49,283 @@
             </li>
         </ul>
         <h3 id="stepHeader">Personal Details</h3>
-        <div class="row">
+        <div class="row"> 
+
             <div class="col-sm-6">
-                Last Name:<span class="required">*</span>
-                <p><input placeholder="Last name" oninput="this.className = ''" name="fname"></p>
+               Last Name:<span class="required">*</span>
+               <p><input asp-for="Orders.LastName" placeholder="Last name" oninput="this.className = ''"></p>
+               <span asp-validation-for="Orders.LastName" class="text-danger"></span>
             </div>
+             
             <div class="col-sm-6">
-                First Name:<span class="required">*</span>
-                <p><input placeholder="First name" oninput="this.className = ''" name="lname"></p>
+               First Name:<span class="required">*</span>
+               <p><input asp-for="Orders.FirstName" placeholder="First name" oninput="this.className = ''"></p>
+               <span asp-validation-for="Orders.FirstName" class="text-danger"></span>
             </div>
+            
         </div>
-        Contact No.<span class="required">*</span>
-        <p><input placeholder="Contact No" oninput="this.className = ''" name="contactNo"></p>
-        Email:<span class="required">*</span>
-        <p><input placeholder="Email" oninput="this.className = ''" name="email"></p>
-        Delivery Address:<span class="required">*</span>
-        <p><input placeholder="Delivery Address" oninput="this.className = ''" name="delAdd"></p>
-    </div>
-    <div class="tab" id="step-1">
-        <ul class="active-button">
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="#step-1">
-                    <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-1">
-                    <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-1">
-                    <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-1">
-                    <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-1">
-                    <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
-                </a>
-            </li>
-        </ul>
-        <h3 id="stepHeader">Order Items</h3>
-        <div class="input_fields_wrap">
-            <div class="row">
-                <div class="col-sm-6">
-                    Product Name:<span class="required">*</span>
-                    <input type="text" placeholder="Enter Product" oninput="this.className = ''" name="mytext[]">
-                </div>
-                <div class="col-sm-3">
-                    Quantity:<span class="required">*</span>
-                    <input type="number" placeholder="Quantity" oninput="this.className = ''" name="mytext[]">
-                </div>
-                <div class="col-sm-3">
-                    Miligrams:<span class="required">*</span>
-                    <input type="number" placeholder="Miligrams" oninput="this.className = ''" name="mytext[]">
-                </div>
-            </div>
-        </div>
-        <button class="add_field_button">+ Add More Products</button>
         <div class="form-group">
-            <label for="exampleFormControlTextarea2">Instructions:</label>
-            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" style="resize: none;  border: 1px solid #aaaaaa;
+            Contact No.<span class="required">*</span>
+            <p><input asp-for="Orders.ContactNo" placeholder="Contact No" oninput="this.className = ''"></p>
+            <span asp-validation-for="Orders.ContactNo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            Email:<span class="required">*</span>
+            <p><input asp-for="Orders.Email" placeholder="Email" oninput="this.className = ''"></p>
+            <span asp-validation-for="Orders.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            Delivery Address:<span class="required">*</span>
+            <p><input asp-for="Orders.DeliveryAddress" placeholder="Delivery Address" oninput="this.className = ''"></p>
+            <span asp-validation-for="Orders.DeliveryAddress" class="text-danger"></span>
+        </div>
+    </div>
+        <div class="tab" id="step-1">
+            <ul class="active-button">
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#step-1">
+                        <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#step-1">
+                        <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#step-1">
+                        <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#step-1">
+                        <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#step-1">
+                        <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
+                    </a>
+                </li>
+            </ul>
+            <h3 id="stepHeader">Order Items</h3>
+            <div class="input_fields_wrap">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Product Name:<span class="required">*</span>
+                        <input asp-for="OrderDetails.ProductName" placeholder="Enter Product" oninput="this.className = ''">
+                        <span asp-validation-for="OrderDetails.ProductName" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-3">
+                        Quantity:<span class="required">*</span>
+                        <input asp-for="OrderDetails.Quantity" placeholder="Quantity" oninput="this.className = ''">
+                        <span asp-validation-for="OrderDetails.Quantity" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-3">
+                        Miligrams:<span class="required">*</span>
+                        <input asp-for="OrderDetails.Milligrams" placeholder="Miligrams" oninput="this.className = ''">
+                        <span asp-validation-for="OrderDetails.Milligrams" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <button class="add_field_button">+ Add More Products</button>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea2">Instructions:</label>
+                <textarea asp-for="OrderDetails.Instructions" class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" style="resize: none;  border: 1px solid #aaaaaa;
                 padding: 10px" placeholder="Type your Instructions here..."></textarea>
+                <span asp-validation-for="OrderDetails.Instructions" class="text-danger"></span>
+            </div>
         </div>
-    </div>
-    <div class="tab">
-        <ul class="active-button">
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
-                </a>
-            </li>
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="#step-1">
-                    <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-1">
-                    <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-1">
-                    <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-1">
-                    <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
-                </a>
-            </li>
-        </ul>
-        <h3 id="stepHeader">Upload Prescription and Valid ID</h3>
-        <!-- <p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
-        <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
-        <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p> -->
-    </div>
-    <div class="tab">
-        <ul class="active-button">
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
-                </a>
-            </li>
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
-                </a>
-            </li>
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="#step-1">
-                    <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-1">
-                    <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-1">
-                    <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
-                </a>
-            </li>
-        </ul>
-        <h3 id="stepHeader">Choose a Mercury Branch</h3>
-        <!-- <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-        <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p> -->
-    </div>
-    <div class="tab">
-        <ul class="active-button">
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
-                </a>
-            </li>
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
-                </a>
-            </li>
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
-                </a>
-            </li>
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="#step-1">
-                    <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
-                </a>
-            </li>
-            <li>
-                <a href="#step-1">
-                    <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
-                </a>
-            </li>
-        </ul>
-        <h3>Choose a Payment Method</h3>
-        <!-- <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-        <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p> -->
-    </div>
-    <div class="tab">
-        <ul class="active-button">
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
-                </a>
-            </li>
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
-                </a>
-            </li>
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
-                </a>
-            </li>
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
-                </a>
-            </li>
-            <li class="success">
-                <a href="#step-1">
-                    <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="#step-1">
-                    <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
-                </a>
-            </li>
-        </ul>
-        <h3 id="stepHeader">Confirm Information and Orders</h3>
-        <!-- <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-        <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p> -->
-    </div>
-    <div>
-        <div class="button-row">
-            <button type="button" id="prevBtn" onclick="nextPrev(-1)" class="previous">Previous</button>
-            <button type="button" id="nextBtn" onclick="nextPrev(1)" class="next">Next</button>
+        <div class="tab">
+            <ul class="active-button">
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
+                    </a>
+                </li>
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#step-1">
+                        <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#step-1">
+                        <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#step-1">
+                        <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#step-1">
+                        <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
+                    </a>
+                </li>
+            </ul>
+            <h3 id="stepHeader">Upload Prescription and Valid ID</h3>
+            <p>Prescription:<span class="required">*</span></p>
+            <div class="custom-file mb-3">
+                <input asp-for="Orders.Prescription" type="file" class="custom-file-input" id="customFile">
+                <label asp-for="Orders.Prescription" class="custom-file-label" for="customFile">Upload Prescription</label>
+                <span asp-validation-for="Orders.Prescription" class="text-danger"></span>
+            </div>
+            <p>Valid ID:<span class="required">*</span></p>
+            <div class="custom-file mb-3">
+                <input asp-for="Orders.ValidID" type="file" class="custom-file-input" id="customFile">
+                <label asp-for="Orders.ValidID" class="custom-file-label" for="customFile">Upload Valid ID</label>
+                <span asp-validation-for="Orders.ValidID" class="text-danger"></span>
+            </div>
         </div>
-    </div>
-    <!-- Circles which indicates the steps of the form: -->
-    <div style="text-align:center;margin-top:40px;">
-        <span class="step"></span>
-        <span class="step"></span>
-        <span class="step"></span>
-        <span class="step"></span>
-        <span class="step"></span>
-    </div>
+        <div class="tab">
+            <ul class="active-button">
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
+                    </a>
+                </li>
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
+                    </a>
+                </li>
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#step-1">
+                        <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#step-1">
+                        <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#step-1">
+                        <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
+                    </a>
+                </li>
+            </ul>
+            <h3 id="stepHeader">Choose a Mercury Branch</h3>
+            <!-- <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+        <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p> -->
+        </div>
+        <div class="tab">
+            <ul class="active-button">
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
+                    </a>
+                </li>
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
+                    </a>
+                </li>
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
+                    </a>
+                </li>
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#step-1">
+                        <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#step-1">
+                        <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
+                    </a>
+                </li>
+            </ul>
+            <h3>Choose a Payment Method</h3>
+            <!-- <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+        <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p> -->
+        </div>
+        <div class="tab">
+            <ul class="active-button">
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">1</span><span style="margin-left: 25px; color:  #1a1a1a">Personal Details</span>
+                    </a>
+                </li>
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">2</span><span style="margin-left: 50px; color:  #1a1a1a">Order Items</span>
+                    </a>
+                </li>
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">3</span><span style="margin-left: 45px;color:  #1a1a1a">Upload Images</span>
+                    </a>
+                </li>
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">4</span><span style="margin-left: 50px; color:  #1a1a1a">Select Branch</span>
+                    </a>
+                </li>
+                <li class="success">
+                    <a href="#step-1">
+                        <span class="round-btn">5</span><span style="margin-left: 25px; color:  #1a1a1a">Payment Method</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#step-1">
+                        <span class="round-btn">6</span><span style="margin-left: 47px; color:  #1a1a1a">Confirmation</span>
+                    </a>
+                </li>
+            </ul>
+            <h3 id="stepHeader">Confirm Information and Orders</h3>
+            <!-- <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+        <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p> -->
+        </div>
+        <div>
+            <div class="button-row">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)" class="previous">Previous</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)" class="next">Next</button>
+            </div>
+        </div>
+        <!-- Circles which indicates the steps of the form: -->
+        <div style="text-align:center;margin-top:40px;">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
 </form>
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+    function pageUnload() {
+        return "The data on this page will be lost if you leave";
+    }
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

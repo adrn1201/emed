@@ -20,7 +20,6 @@ namespace EMedFinalProject.Models
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Delivery Address is Required")]
-        [DataType(DataType.MultilineText)]
         public string DeliveryAddress { get; set; }
 
         [Required(ErrorMessage = "Contact No. is Required")]

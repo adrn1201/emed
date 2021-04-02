@@ -18,6 +18,8 @@ namespace EMedFinalProject.Models
         public int BranchID { get; set; }
         public virtual Branch Branch { get; set; }
         public string PaymentMethod { get; set; }
+        public Order Orders { get; set; }
+        public OrdersDetail OrderDetails { get; set; }
         public List<OrderDetailsViewModel> OrderList { get; set; }
 
     }

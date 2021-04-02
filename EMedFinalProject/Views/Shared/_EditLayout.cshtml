@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/Homepage prop/assets/img/E-Med.png" rel="icon" />
     <title>Admin|Edit Branch Record</title>
 
 
@@ -15,33 +16,34 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <style>
 
-           .topnav {
-              overflow: hidden;
-              background-color: #333;
-           }
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
 
-          .topnav a {
-              float: left;
-              color: #f2f2f2;
-              text-align: center;
-              padding: 14px 16px;
-              text-decoration: none;
-              font-size: 17px;
-          }
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
 
-          .topnav a:hover {
-             background-color: #ddd;
-             color: black;
-          }
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
 
-         .topnav a.active {
-             background-color: #4CAF50;
-             color: white;
-         }
+                .topnav a.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
 
         .topnav-right {
             float: right;
         }
+
         .required {
             color: red;
         }
@@ -67,6 +69,7 @@
             color: var(--white);
             font-weight: 500;
         }
+
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -79,7 +82,7 @@
         }
     </style>
 </head>
-<body>
+<body onbeforeunload="return pageUnload()">
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
             <div class="custom-menu">

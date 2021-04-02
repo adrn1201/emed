@@ -31,6 +31,9 @@
 
     <!--Extra-->
     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- =======================================================
     * Template Name: BizLand - v1.2.1
@@ -39,7 +42,7 @@
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
 </head>
-<body>
+<body onbeforeunload="return pageUnload()">
     <!-- ======= Top Bar ======= -->
     <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
         <div class="container d-flex">
@@ -76,7 +79,7 @@
 
         <div class="footer-newsletter">
             <div class="container">
-               
+
             </div>
         </div>
 
@@ -107,7 +110,7 @@
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">TGP</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Watsons</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="~/Order/MercuryOrderProcess">Mercury Drug</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="~/Order/MercuryTerms">Mercury Drug</a></li>
                         </ul>
                     </div>
 
@@ -125,7 +128,7 @@
                 &copy; Copyright <strong><span>E-Med</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
-               
+
                 Designed by <a href="/Order/Home/#about">E-Med group</a>
             </div>
         </div>
