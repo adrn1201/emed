@@ -32,6 +32,14 @@ namespace EMedFinalProject.Controllers
         {
             return View();
         }
+        public IActionResult WatsonsTerms()
+        {
+            return View();
+        }
+        public IActionResult TgpTerms()
+        {
+            return View();
+        }
         public IActionResult MercuryOrderProcess()
         {
             return View();

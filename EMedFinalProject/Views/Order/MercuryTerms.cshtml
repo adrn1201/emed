@@ -1,5 +1,5 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    
 *@
 @{
     Layout = "~/Views/Shared/_OrderLayout .cshtml";
@@ -19,7 +19,7 @@
         <div id="innerBox" style="font-family:'Times New Roman', Times, serif; font-size:inherit;" class="scrollBar">
 
             <h3 id="termHeader">Data Privacy Consent/Agreement</h3>
-            <p>By accessing and using Order Online, you accept and agree to be bound by the terms and conditions of Mercury Drug’s <a href="/privacy-policy.html">Online Data Privacy Policy</a> for the purpose of availing of its services, administration of your account, processing of any transaction using your online account, and for other reasonable purposes which are related to your online account.</p>
+            <p>By accessing and using Order Online, you accept and agree to be bound by the terms and conditions of Mercury Drug’s Online Data Privacy Policy for the purpose of availing of its services, administration of your account, processing of any transaction using your online account, and for other reasonable purposes which are related to your online account.</p>
 
             <h3 id="termHeader">Placing Your Order</h3>
             <p>You must provide all requested information for us to process your order.  Mercury Drug reserves the right to request additional information from you at any time to enable us to complete your order and/or to comply with government regulatory requirements.  Acceptance of order is subject to availability of the products ordered. Also, product assortment may vary in every Mercury Drug store. By placing an order, you confirm that the details you provided in the order page are true and correct in all respects.  The system will display a confirmation page that confirms successful receipt of your order.</p>
@@ -65,7 +65,7 @@
 
         </div>
         <div class="button-row">
-            <a asp-action="Home" class="buttonDecline">Decline</a>
+            <a href="~/Order/Home/#services" class="buttonDecline">Decline</a>
             <a asp-action="MercuryOrderProcess" class="buttonAccept">Accept</a>
         </div>
         
