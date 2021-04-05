@@ -48,11 +48,21 @@
             float: right;
         }
 
+        #currentTime {
+            font-size: 50px;
+            text-align: center;
+            font-family: 'Oswald';
+            font-weight: 500;
+            color: black;
+            background-color: #f2f2f2;
+        }
+
         .time {
             width: 320px;
             padding: 10px;
-            border: 5px solid gray;
+            border: 5px #222;
             margin: 0;
+            background-color: #222;
         }
 
         .take_meals_opt {
@@ -241,7 +251,7 @@
                 <div class="container">
                     <h2 style="color:blue;">E<span class="Dash" style="color: pink;">-</span><span class="Dash" style="color:Red;">Med</span><span style="Color:black; float: right;">Homepage</span></h2>
                     <br>
-                    <div><h1 class="title" id="time"></h1></div>
+                    <div><h1 class="title" id="currentTime"></h1></div>
                     <br>
                     <a asp-action="Create"><div id="pickup" class="take_meals_opt">Add New Branch </div></a>
                     <a asp-action="Index"><div id="delivery" class="viewbranches">View Branches</div></a>
@@ -259,9 +269,33 @@
         <script src="~/js/main.js"></script>
         <script>
 
-            var d = new Date();
-            var n = d.toLocaleTimeString();
-            document.getElementById("time").innerHTML = n;
+            window.onload = function () {
+                clock();
+                function clock() {
+                    var now = new Date();
+                    var TwentyFourHour = now.getHours();
+                    var hour = now.getHours();
+                    var min = now.getMinutes();
+                    var sec = now.getSeconds();
+                    var mid = 'pm';
+                    if (min < 10) {
+                        min = "0" + min;
+                    }
+                    if (hour > 12) {
+                        hour = hour - 12;
+                    }
+                    if (hour == 0) {
+                        hour = 12;
+                    }
+                    if (TwentyFourHour < 12) {
+                        mid = 'am';
+                    }
+                    document.getElementById('currentTime').innerHTML = hour + ':' + min + ':' + sec + ' ' + mid;
+                    setTimeout(clock, 1000);
+                }
+            }
+
+            setInterval(time, 1000);
 
             $("#delivery").click(function () {
                 $("#divde").show();
