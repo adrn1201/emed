@@ -39,8 +39,7 @@ namespace EMedFinalProject.Models
         public string ValidID { get; set; }
         public int BranchID { get; set; }
         public virtual Branch Branch { get; set; }
-
-        [Required(ErrorMessage = "Payment Method is Required")]
-        public string PaymentMethod { get; set; }
+        public int PaymentMethodID { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
     }
 }

@@ -24,4 +24,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\validId\" />
+    <Folder Include="wwwroot\images\prescription\" />
+  </ItemGroup>
+
 </Project>

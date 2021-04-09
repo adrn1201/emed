@@ -30,6 +30,7 @@ namespace EMedFinalProject.Controllers
         }
         public IActionResult MercuryTerms()
         {
+ 
             return View();
         }
         public IActionResult WatsonsTerms()
@@ -40,53 +41,84 @@ namespace EMedFinalProject.Controllers
         {
             return View();
         }
-        public IActionResult MercuryOrderProcess()
+        public async Task<IActionResult> MercuryOrderProcess(int? id)
         {
-            return View();
+            var applicationDbContext = await _context.Branches.Include(b => b.Pharmacy).ToListAsync();
+            if (id != null)
+            {
+                applicationDbContext = await _context.Branches.Include(b => b.Pharmacy).Where(b => b.Pharmacy.PharmacyID == (int)id).ToListAsync();
+
+            }
+            var model = new BranchesViewModel();
+            model.Branches = applicationDbContext;
+            return View(model);
+            //var branchList = _context.Branches.Where(b => b.PharmacyID == 1);
+            //return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> MercuryOrderProcess(OrderViewModel record) //IFormFile file)
+        public async Task<IActionResult> MercuryOrderProcess(OrderViewModel record, IFormFile prescription, IFormFile validId)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    if (file != null)
-            //    {
-            //        if (file.Length > 0)
-            //        {
-            //            //Getting FileName
-            //            var fileName = Path.GetFileName(file.FileName);
-            //            //Getting file Extension
-            //            var fileExtension = Path.GetExtension(fileName);
-            //            // concatenating  FileName + FileExtension
-            //            var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
-
-            //            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/services", newFileName);
-            //            record.Prescription = newFileName;
-
-            //            using var stream = new FileStream(filePath, FileMode.Create);
-            //            file.CopyTo(stream);
-            //        }
-            //    }
-                var branches = await _context.Branches.Where(b => b.BranchId == record.BranchID).SingleOrDefaultAsync();
-
-                var order = new OrderViewModel();
+            if (ModelState.IsValid)
+            {
+                if (prescription != null)
                 {
-                    order.LastName = record.LastName;
-                    order.FirstName = record.FirstName;
-                    order.DeliveryAddress = record.DeliveryAddress;
-                    order.ContactNo = record.ContactNo;
-                    order.Email = record.Email;
+                    if (prescription.Length > 0)
+                    {
+                        //Getting FileName
+                        var fileName = Path.GetFileName(prescription.FileName);
+                        //Getting file Extension
+                        var fileExtension = Path.GetExtension(fileName);
+                        // concatenating  FileName + FileExtension
+                        var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
+
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/prescription/", newFileName);
+                        record.Orders.Prescription = newFileName;
+
+                        using var stream = new FileStream(filePath, FileMode.Create);
+                        prescription.CopyTo(stream);
+                    }
+                }
+
+                if (validId != null)
+                {
+                    if (validId.Length > 0)
+                    {
+                        //Getting FileName
+                        var fileName = Path.GetFileName(validId.FileName);
+                        //Getting file Extension
+                        var fileExtension = Path.GetExtension(fileName);
+                        // concatenating  FileName + FileExtension
+                        var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
+
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/validId/", newFileName);
+                        record.Orders.ValidID = newFileName;
+
+                        using var stream = new FileStream(filePath, FileMode.Create);
+                        validId.CopyTo(stream);
+                    }
+                }
+
+                var branches = await _context.Branches.Where(b => b.BranchId == record.Orders.BranchID).SingleOrDefaultAsync();
+                var order = new Order();
+                {
+                    order.LastName = record.Orders.LastName;
+                    order.FirstName = record.Orders.FirstName;
+                    order.DeliveryAddress = record.Orders.DeliveryAddress;
+                    order.ContactNo = record.Orders.ContactNo;
+                    order.Email = record.Orders.Email;
                     order.Branch = branches;
-                    order.BranchID = record.BranchID;
-                    order.PaymentMethod = record.PaymentMethod;
+                    order.BranchID = record.Orders.BranchID;
+                    order.PaymentMethodID = record.PaymentMethods.PaymentMethodID;
+                    order.Prescription = record.Orders.Prescription;
+                    order.ValidID = record.Orders.ValidID;
 
                 }
 
-                //Dynamic Fields
+
                 foreach (var productOrders in record.OrderList)
                 {
-                    var products = new OrderDetailsViewModel()
+                    var products = new OrdersDetail()
                     {
                         ProductName = productOrders.ProductName,
                         Milligrams = productOrders.Milligrams,
@@ -97,7 +129,11 @@ namespace EMedFinalProject.Controllers
                 }
 
                 return RedirectToAction("OrderForm", "Account", new { success = "yes" });
+
             }
+            return View();
         }
+       
     }
+}
 

@@ -8,5 +8,7 @@ namespace EMedFinalProject.Models
     public class BranchesViewModel
     {
         public List <Branch> Branches { get; set; }
+
+        public OrderViewModel Orders { get; set; }
     }
 }

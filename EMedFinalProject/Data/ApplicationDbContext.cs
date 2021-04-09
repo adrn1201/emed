@@ -18,6 +18,7 @@ namespace EMedFinalProject.Data
         public DbSet<Pharmacy> Pharmacies { get; set; }
 
         public DbSet<Order> Orders { get; set; }
+        public DbSet<PaymentMethod> Methods { get; set; }
         public DbSet<OrdersDetail> OrderDetails { get; set; }
     }
 }
