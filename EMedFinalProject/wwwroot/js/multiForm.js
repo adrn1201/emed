@@ -332,16 +332,12 @@
         $('#payment_details').addClass('active in');
     });
 
-    //6th Step 
-    $('#btn_confirm_details').click(function () {
-       
-    });
-        //File Submission
-        //if (error_prescription != '' || error_validId != '') {
-        //    return false;
-        //} else {
-        //    $('#btn_contact_details').attr("disabled", "disabled");
-        //    $(document).css('cursor', 'prgress');
-        //    $("#register_form").submit();
-        //}
+    ////6th Step Submission
+    //$('#btn_confirm_details').click(function () {
+
+    //    $('#btn_confirm_details').attr("disabled", "disabled");
+    //    $(document).css('cursor', 'prgress');
+    //    $("#order_form").submit();
+    //});
+
 });

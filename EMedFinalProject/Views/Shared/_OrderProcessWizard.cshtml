@@ -47,18 +47,19 @@
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
     <style>
-        .containerBox {
-            background-color: #ffffff;
-            margin: 160px auto;
-            padding: 40px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, .5);
-            box-shadow: 3px 4px 8px 3px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            width: 81%;
-            min-width: 300px;
+        .qwerty {
+            border: 1px solid #ccc;
         }
-
+        .headingIndicator {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: red;
+            font-size: 20px;
+        }
         .box {
-            width: 800px;
+            width: 100%;
             margin: 0 auto;
         }
 
@@ -74,7 +75,11 @@
             cursor: not-allowed;
         }
 
-        #btn_customer_details {
+        #btn_customer_details,
+        #btn_branch_details,
+        #btn_order_details,
+        #btn_upload_details,
+        #btn_payment_details {
             border: 0;
             box-shadow: none;
             padding: 7px 30px;
@@ -86,13 +91,27 @@
             background-color: #ff1a1a;
         }
 
+        .submit {
+            border: 0;
+            box-shadow: none;
+            padding: 7px 30px;
+            min-width: 100px;
+            border-radius: 20px;
+            color: var(--white);
+            font-weight: 500;
+            margin-left: 5px;
+            background-color: #2eb82e;
+        }
+
             #btn_customer_details:hover {
                 opacity: 0.8;
             }
         /*style errors*/
         .has-error {
+            /* border-color: #cc0000;
+            background-color: #ffff99;*/
             border-color: #cc0000;
-            background-color: #ffff99;
+            background-color: #ffcccc;
         }
 
         .required {
@@ -124,12 +143,30 @@
             font-weight: 500;
             margin-bottom: 20px;
             margin-top: 10px;
+            margin-left:10px;
         }
 
          #remove_field:hover,
          #add_field_button:hover {
                 opacity: 0.8;
          }
+
+        #previous_btn_customer_details,
+        #previous_btn_order_details,
+        #previous_btn_upload_details,
+        #previous_btn_payment_details,
+        #previous_btn_confirm_details {
+            background-color: var(--orange);
+            border: 0;
+            box-shadow: none;
+            padding: 7px 30px;
+            min-width: 100px;
+            border-radius: 20px;
+            color: var(--white);
+            font-weight: 500;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
 
         a:link {
             text-decoration: none;
@@ -154,7 +191,7 @@
 
         .tdConf, .thConf {
             border: 1px solid black;
-            text-align: left;
+            text-align: center;
             padding: 8px;
         }
 
@@ -164,8 +201,9 @@
         .header {
             text-align: center;
             width: 100%;
+            padding:8px;
             background: linear-gradient(to right, rgb(234, 30, 36) 0%, rgb(234, 30, 36) 100%);
-            border: 1px solid rgb(234, 30, 36);
+            border: 1px solid black;
             color: white;
             font-weight: bold;
         }

@@ -34,7 +34,7 @@ namespace EMedFinalProject.Controllers
                 applicationDbContext = await _context.Branches.Include(b => b.Pharmacy).Where(b => b.Pharmacy.PharmacyID == (int)id).ToListAsync();
                 
             }
-            var model = new OrderViewModel();
+            var model = new BranchesViewModel();
             model.Branches = applicationDbContext;
             return View(model);
 

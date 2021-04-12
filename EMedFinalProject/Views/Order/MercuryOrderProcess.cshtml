@@ -16,9 +16,9 @@
         <h2>Online Order Form</h2>
     </div>
 </div>
-<div class="containerBox" style="margin-top:160px;">
+<div class="container box" style="margin:120px auto;" data-aos="fade-up">
     <br />
-    <form method="post" id="register_form">
+    <form method="post" id="order_form">
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active_tab1" style="border:1px solid #ccc" id="list_branch_details">Select Branch</a>
@@ -39,13 +39,16 @@
                 <a class="nav-link inactive_tab1" id="list_confirmation_details" style="border:1px solid #ccc">Confirmation</a>
             </li>
         </ul>
-        <div class="tab-content" style="margin-top:16px;">
-            <div class="tab-pane active" id="branch_details">
-                <div class="panel panel-default">
-                    <div class="panel-heading" style="text-align:center;">Choose a Mercury Branch</div>
+        <div class="qwerty" style="margin-top:1px;">
+            <div class="tab-content" style="margin-top:16px;">
+                <div class="tab-pane active" id="branch_details">
+                    <div class="headingIndicator">Choose a Mercury Branch</div>
+                    @*<div class="panel panel-default">*@
+                    @*<div class="panel-heading" style="text-align:center;">Choose a Mercury Branch</div>*@
+
                     <div class="panel-body">
                         <label class="control-label">Select Mercury Branch</label><span class="required">*</span>
-                        <select class="form-control" id="branchSelect" style="width: 1100px;" asp-items="@(new SelectList(branchList,"PharmacyID", "BranchLocation"))">
+                        <select asp-for="Orders.Orders.BranchID" class="form-control" onchange="selectedSubjectName()" id="branchSelect" asp-items="@(new SelectList(branchList,"PharmacyID", "BranchLocation"))">
                             <option value="">--Select a Mercury Branch--</option>
                         </select>
                         <span id="error_branch" class="text-danger"></span>
@@ -55,55 +58,57 @@
                         </div>
                         <br />
                     </div>
+                    @*</div>*@
                 </div>
-            </div>
-            <div class="tab-pane fade" id="login_details">
-                <div class="panel panel-default">
-                    <div class="panel-heading" style="text-align:center;">Personal Details</div>
+                <div class="tab-pane fade" id="login_details">
+                    <div class="headingIndicator">Personal Details</div>
+                    @*<div class="panel panel-default">
+                        <div class="panel-heading" style="text-align:center;">Personal Details</div>*@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Last Name:</label><span class="required">*</span>
-                                    <input type="text" name="lName" id="lName" class="form-control" />
+                                    <input type="text" asp-for="Orders.Orders.LastName" id="lName" class="form-control" />
                                     <span id="error_lastName" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>First Name:</label><span class="required">*</span>
-                                    <input type="text" name="fName" id="fName" class="form-control" />
+                                    <input type="text" asp-for="Orders.Orders.FirstName"  id="fName" class="form-control" />
                                     <span id="error_firstName" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Contact No:</label><span class="required">*</span>
-                            <input type="text" name="contactNo" id="contactNo" class="form-control" />
+                            <input type="text" asp-for="Orders.Orders.ContactNo" id="contactNo" class="form-control" />
                             <span id="error_contactNo" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label>Email:</label><span class="required">*</span>
-                            <input type="text" name="email" id="email" class="form-control" />
+                            <input type="text" asp-for="Orders.Orders.Email" id="email" class="form-control" />
                             <span id="error_email" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label>Delivery Address:</label><span class="required">*</span>
-                            <input type="text" name="delivAdd" id="delivAdd" class="form-control" />
+                            <input type="text"  asp-for="Orders.Orders.DeliveryAddress" id="delivAdd" class="form-control" />
                             <span id="error_delivAdd" class="text-danger"></span>
                         </div>
                         <br />
                         <div align="center">
-                            <button type="button" name="previous_btn_customer_details" id="previous_btn_customer_details" class="btn btn-default btn-lg">Previous</button>
+                            <button type="button" name="previous_btn_customer_details" id="previous_btn_customer_details">Previous</button>
                             <button type="button" name="btn_customer_details" id="btn_customer_details">Next</button>
                         </div>
                         <br />
                     </div>
+                    @*</div>*@
                 </div>
-            </div>
-            <div class="tab-pane fade" id="personal_details">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Order Items</div>
+                <div class="tab-pane fade" id="personal_details">
+                    <div class="headingIndicator">Order Items</div>
+                    @*<div class="panel panel-default">
+                        <div class="panel-heading">Order Items</div>*@
                     <div class="panel-body">
                         <table id="paramsFields">
                             <tr valign="top">
@@ -112,17 +117,17 @@
                                     <div class="row" style="margin-bottom:12px;">
                                         <div class="col-sm-6">
                                             Product Name:<span class="required">*</span>
-                                            <input type="text" class="code" id="paramFieldName" name="paramKey[0]" placeholder="Product Name" />
+                                            <input type="text" class="prodName" id="paramFieldName" name="Details[0].ProductName" placeholder="Product Name" />
                                             <span id="error_ProductName" class="text-danger"></span>
                                         </div>
                                         <div class="col-sm-3">
                                             Quantity:<span class="required">*</span>
-                                            <input type="number" class="code" id="paramFieldValue" name="paramValue[0]" value="" placeholder="Quantity" />
+                                            <input type="number" class="quant" id="paramFieldValue" name="Details[0].Quantity" value="" placeholder="Quantity" />
                                             <span id="error_quantity" class="text-danger"></span>
                                         </div>
                                         <div class="col-sm-3">
                                             Milligrams:<span class="required">*</span>
-                                            <input type="number" class="code" id="paramMilValue" name="paramMil[0]" value="" placeholder="Milligrams" />
+                                            <input type="number" class="mil" id="paramMilValue" name="Details[0].Milligrams" value="" placeholder="Milligrams" />
                                             <span id="error_milligrams" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -135,17 +140,17 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             Product Name:<span class="required">*</span>
-                                            <input type="text" class="code" id="paramFieldName" name="paramKey[%]" value="" placeholder="Product Name" />
+                                            <input type="text" class="prodName" id="paramFieldName" name="Details[%].ProductName" value="" placeholder="Product Name" />
                                             <span id="error_ProductName" class="text-danger"></span>
                                         </div>
                                         <div class="col-sm-3">
                                             Quantity:<span class="required">*</span>
-                                            <input type="number" class="code" id="paramFieldValue" name="paramValue[%]" value="" placeholder="Quantity" />
+                                            <input type="number" class="quant" id="paramFieldValue" name="Details[%].Quantity" value="" placeholder="Quantity" />
                                             <span id="error_quantity" class="text-danger"></span>
                                         </div>
                                         <div class="col-sm-3">
                                             Milligrams:<span class="required">*</span>
-                                            <input type="number" class="code" id="paramMilValue" name="paramMil[%]" value="" placeholder="Milligrams" />
+                                            <input type="number" class="mil" id="paramMilValue" name="Details[%].Milligrams" value="" placeholder="Milligrams" />
                                             <span id="error_milligrams" class="text-danger"></span>
                                         </div>
                                         <a href="javascript:void(0);" id="remove_field" class="remCF">Remove Product</a>
@@ -158,69 +163,138 @@
                     </div>
                     <br />
                     <div align="center">
-                        <button type="button" name="previous_btn_order_details" id="previous_btn_order_details" class="btn btn-default btn-lg">Previous</button>
-                        <button type="button" name="btn_order_details" id="btn_order_details" class="btn btn-info btn-lg">Next</button>
+                        <button type="button" name="previous_btn_order_details" id="previous_btn_order_details">Previous</button>
+                        <button type="button" name="btn_order_details" id="btn_order_details">Next</button>
                     </div>
                     <br />
+                    @*</div>*@
                 </div>
-            </div>
 
-            <div class="tab-pane fade" id="contact_details">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Upload Prescription and Valid ID</div>
+                <div class="tab-pane fade" id="contact_details">
+                    <div class="headingIndicator">Upload Prescription and Valid ID</div>
+                    @*<div class="panel panel-default">
+                        <div class="panel-heading">Upload Prescription and Valid ID</div>*@
                     <div class="panel-body">
                         <p>Prescription:<span class="required">*</span></p>
                         <div class="custom-file mb-3">
-                            <input type="file" class="custom-file-input" id="customFile" name="prescription">
-                            <label class="custom-file-label" for="customFile">Upload Prescription</label>
+                            <input type="file" class="custom-file-input" id="customFile" name="prescription" onchange="javascript:updateList()">
+                            <label class="custom-file-label" for="customFile" id="presId">Upload Prescription</label>
                             <span id="error_prescription" class="text-danger"></span>
                         </div>
                         <p>Valid ID:<span class="required">*</span></p>
                         <div class="custom-file mb-3">
-                            <input type="file" class="custom-file-input" id="validIdFile" name="validId">
-                            <label class="custom-file-label" for="customFile">Upload Valid ID</label>
+                            <input type="file" class="custom-file-input" id="validIdFile" name="validId" onchange="javascript:updateList()">
+                            <label class="custom-file-label" for="customFile" id="valId">Upload Valid ID</label>
                             <span id="error_validId" class="text-danger"></span>
                         </div>
                         <br />
                         <div align="center">
-                            <button type="button" name="previous_btn_upload_details" id="previous_btn_upload_details" class="btn btn-default btn-lg">Previous</button>
+                            <button type="button" name="previous_btn_upload_details" id="previous_btn_upload_details">Previous</button>
                             @*<button type="button" name="btn_upload_details" id="btn_upload_details" class="btn btn-success btn-lg">Next</button>*@
-                            <button type="button" name="btn_upload_details" id="btn_upload_details" class="btn btn-info btn-lg">Next</button>
+                            <button type="button" name="btn_upload_details" id="btn_upload_details" onclick="selectedPaymentName()">Next</button>
                         </div>
                         <br />
                     </div>
+                    @*</div>*@
                 </div>
-            </div>
-            <div class="tab-pane fade" id="payment_details">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Select Payment Method</div>
+                <div class="tab-pane fade" id="payment_details">
+                    <div class="headingIndicator">Upload Prescription and Valid ID</div>
+                    @*<div class="panel panel-default">
+                        <div class="panel-heading">Select Payment Method</div>*@
                     <div class="panel-body">
                         <label class="control-label">Payment Method</label><span class="required">*</span>
-                        <select class="form-control" id="paymentMethod" asp-items="@(new SelectList(categoryList, "PaymentMethodID", "Method"))">
+                        <select asp-for="Orders.Orders.PaymentMethodID" class="form-control" id="paymentMethod" onchange="selectedPaymentName()" asp-items="@(new SelectList(categoryList, "PaymentMethodID", "Method"))">
                             <option value="">--Select a Payment Method--</option>
                         </select>
                         <span id="error_paymentMethod" class="text-danger"></span>
                         <br />
+                        <!--creditcard field-->
+                        <div id="creditCardForm" style="margin-bottom: 5px;">
+                            <div class="form-group">
+                                <label for="">Cardholder's Name: <span class="required">*</span></label>
+                                <input type="text" name="credNumber" id="credNumber" placeholder="Enter Cardolder's Name" class="form-control">
+                                <span id="error_creditCard" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Cardholder's Address:<span class="required">*</span></label>
+                                <input type="text" name="" placeholder="Enter Cardholder's Address" id="" class="form-control">
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        Card Number (Visa and MasterCard only):<span class="required">*</span>
+                                        <input type="text" name="" placeholder="Enter Card Number" id="" class="form-control">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        Issuing Bank:<span class="required">*</span>
+                                        <input type="text" name="" placeholder="Enter Issuing Bank" id="" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        CVV/CVC:<span class="required">*</span>
+                                        <input type="text" name="" placeholder="Enter CVV" id="" class="form-control">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        Expiry Date:<span class="required">*</span>
+                                        <select placeholder="Month" class="form-control" id="sel1">
+                                            <option>--Select Month--</option>
+                                            <option>01</option>
+                                            <option>02</option>
+                                            <option>03</option>
+                                            <option>04</option>
+                                            <option>05</option>
+                                            <option>06</option>
+                                            <option>07</option>
+                                            <option>08</option>
+                                            <option>09</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        Year<span class="required">*</span>
+                                        <select placeholder="Month" class="form-control" id="sel1">
+                                            <option>--Select Year--</option>
+                                            <option>2021</option>
+                                            <option>2022</option>
+                                            <option>2023</option>
+                                            <option>2024</option>
+                                            <option>2025</option>
+                                            <option>2026</option>
+                                            <option>2027</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end form for credit card info-->
+
                         <div align="center">
-                            <button type="button" name="previous_btn_payment_details" id="previous_btn_payment_details" class="btn btn-default btn-lg">Previous</button>
-                            <button type="button" name="btn_payment_details" id="btn_payment_details" class="btn btn-success btn-lg" onclick="getInputValue();">Next</button>
+                            <button type="button" name="previous_btn_payment_details" id="previous_btn_payment_details">Previous</button>
+                            <button type="button" name="btn_payment_details" id="btn_payment_details" onclick="getInputValue();">Next</button>
                         </div>
                         <br />
                     </div>
+                    @*</div>*@
                 </div>
-            </div>
-            <div class="tab-pane fade" id="confirm_details">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Confirm Details</div>
+                <div class="tab-pane fade" id="confirm_details">
+                    <div class="headingIndicator">Confirm Details</div>
+                    @*<div class="panel panel-default">
+                        <div class="panel-heading">Confirm Details</div>*@
                     <div class="panel-body">
                         <table class="confTable">
                             <tr class="trConf">
-                                <th class="header">Selected Branch</th>
+                                <th class="header">Selected Mercury Branch</th>
                             </tr>
                         </table>
                         <table class="confTable">
                             <tr class="trConf">
-                                @*<td class="tdConf"  id="confSelectedBranch"></td>*@
+                                <td class="tdConf" style="text-align:center;" id="confSelectedBranch"></td>
                             </tr>
                         </table>
                         <table class="confTable">
@@ -242,6 +316,7 @@
                                 <td class="tdConf" id="confEmail"></td>
                             </tr>
                         </table>
+                        @*<label class="custom-file-label" for="customFile">Upload Prescription</label>*@
                         <table class="confTable">
                             <tr>
                                 <th class="header">Products Orders</th>
@@ -259,50 +334,170 @@
                                 <td class="tdConf" id="confQuantity"></td>
                             </tr>
                         </table>
+                        <table class="confTable">
+                            <tr>
+                                <th class="header">Required Attachments</th>
+                            </tr>
+                        </table>
+                        <table class="confTable">
+                            <tr class="trConf">
+                                <th class="thConf">No. of Files Uploaded</th>
+                                <th class="thConf">Uploaded Prescription</th>
+                                <th class="thConf">Uploaded Valid ID</th>
+                            </tr>
+                            <tr class="trConf">
+                                <td class="tdConf" id="confNoOfFiles"></td>
+                                <td class="tdConf" id="confPres"></td>
+                                <td class="tdConf" id="confValId"></td>
+
+                            </tr>
+                        </table>
+                        <table class="confTable">
+                            <tr class="trConf">
+                                <th class="header">Selected Payment Method</th>
+                            </tr>
+                        </table>
+                        <table class="confTable">
+                            <tr class="trConf">
+                                <td class="tdConf" style="text-align:center;" id="confSelectedPaymentMethod"></td>
+                            </tr>
+                        </table>
                         <div align="center">
-                            <button type="button" name="previous_btn_confirm_details" id="previous_btn_confirm_details" class="btn btn-default btn-lg">Previous</button>
-                            <button type="button" name="btn_confirm_details" id="btn_confirm_details" class="btn btn-success btn-lg">Next</button>
+                            <button type="button" name="previous_btn_confirm_details" id="previous_btn_confirm_details">Previous</button>
+                            <button type="submit" name="btn_confirm_details" id="btn_confirm_details" class="submit">Place Order</button>
+                            @*<input type="submit" value="Place Order" class="submit" />*@
                         </div>
                         <br />
                     </div>
+                    @*</div>*@
                 </div>
             </div>
         </div>
     </form>
 </div>
+
 <script>
+
+    //for credit card option select
+    var payment = document.getElementById('paymentMethod');
+    var form = document.getElementById('creditCardForm');
+    var btnNext = document.getElementById('btn_payment_details');
+
+
+    function selectedPaymentName() {
+        var subjectIdNode = document.getElementById('paymentMethod');
+        var value = subjectIdNode.options[subjectIdNode.selectedIndex].text;
+        var res = document.getElementById('confSelectedPaymentMethod');
+        res.innerHTML = value;
+
+        switch (payment.options.selectedIndex) {
+            case 0:
+                form.style.display = "none";
+                break;
+            case 1:
+                form.style.display = "none";
+                break;
+            case 2:
+                form.style.display = "block";
+                /*not sure which results you want here*/
+                break;
+            default:
+                break;
+
+        }
+
+
+    }
+
+
+    function selectedSubjectName() {
+        var subjectIdNode = document.getElementById('branchSelect');
+        var value = subjectIdNode.options[subjectIdNode.selectedIndex].text;
+        var res = document.getElementById('confSelectedBranch');
+        res.innerHTML = value;
+    }
+
+
     function getInputValue() {
 
-        //for selectedBranch
-        //var branch = document.getElementById("branchSelect").value();
-        //var e = document.getElementById("branchSelect");
-        //var value = e.options[e.selectedIndex].value;
-        //var text = e.options[e.selectedIndex].text;
-        //document.getElementById("confSelectedBranch").innerHTML = text;
-
-        // Selecting the input element and get its value 
+        //Selecting the input element and get its value
         var lName = document.getElementById("lName").value;
         var fName = document.getElementById("fName").value;
         var address = document.getElementById("delivAdd").value;
         var cn = document.getElementById("contactNo").value;
         var email = document.getElementById("email").value;
 
-        var test = document.getElementById("paramFieldName").value;
-       
-        //var loopsss = document.querySelectorAll("#paramFieldName");
-
-        for (var i = 0; i < test; i++) {
-            document.getElementById("confProd").innerHTML = test;
-        }
-
-
         //Set Values
         document.getElementById("confFullName").innerHTML = lName + ", " + fName;
         document.getElementById("confDelAddress").innerHTML = address;
         document.getElementById("confContactNo").innerHTML = cn;
         document.getElementById("confEmail").innerHTML = email;
-        
+
+
+        var l = $('.prodName').length;
+        //Initialize default array
+        var result = [];
+
+        for (i = 0; i < l; i++) {
+            //Push each element to the array
+            result.push($('.prodName').eq(i).val());
+        }
+
+        document.getElementById("confProd").innerHTML = result;
+
+        var a = $('.quant').length;
+        //Initialize default array
+        var quantResult = [];
+
+        for (j = 0; j < a; j++) {
+            //Push each element to the array
+            quantResult.push($('.quant').eq(j).val());
+        }
+
+        document.getElementById("confQuantity").innerHTML = quantResult;
+
+        var b = $('.mil').length;
+        //Initialize default array
+        var milResult = [];
+
+        for (k = 0; k < b; k++) {
+            //Push each element to the array
+            milResult.push($('.mil').eq(k).val());
+        }
+
+        document.getElementById("confMil").innerHTML = milResult;
+
     }
+
+    // display file name
+    updateList = function () {
+        //get input
+        var input = document.getElementById("customFile");
+        var secondInput = document.getElementById("validIdFile");
+
+        //get output
+        var output = document.getElementById('confPres');
+        var secondOutput = document.getElementById('confValId');
+
+
+        for (var i = 0; i < input.files.length; ++i) {
+            output.innerHTML = input.files.item(i).name;
+        }
+
+        for (var i = 0; i < secondInput.files.length; ++i) {
+            secondOutput.innerHTML = secondInput.files.item(i).name;
+        }
+
+        //compute file count per input field
+        var numFiles = $("input:file")[0].files.length;
+        var secNumFiles = $("input:file")[1].files.length;
+        document.getElementById("confNoOfFiles").innerHTML = numFiles + secNumFiles;
+
+    }
+
+
+
+    //Dynamic Input Fields
     var i = 0; // Start at 0
     var maxFields = 10;
     $(document).ready(function () {

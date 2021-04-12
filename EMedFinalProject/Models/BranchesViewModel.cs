@@ -10,5 +10,7 @@ namespace EMedFinalProject.Models
         public List <Branch> Branches { get; set; }
 
         public OrderViewModel Orders { get; set; }
+
+        public OrdersDetail Details { get; set; }
     }
 }
