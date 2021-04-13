@@ -1,0 +1,427 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Multi Step Registration Form Using JQuery Bootstrap in PHP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .box {
+            width: 100%;
+        }
+        
+        .active_tab1 {
+            background-color: #ff4d4d;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .active_tab1:hover {
+            background-color: #ff3333;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .inactive_tab1 {
+            background-color: #e6e6e6;
+            color: #333;
+            cursor: not-allowed;
+            font-weight: bold;
+        }
+        
+        .has-error {
+            border-color: #cc0000;
+            background-color: #ffcccc;
+        }
+        
+        .qwerty {
+            font-weight: bold;
+            color: black;
+            border: 1px solid #ccc;
+        }
+        
+        .btn {
+            background-color: #ff4d4d;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .col-lg-12 {
+            background-color: white;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: red;
+            font-size: 20px;
+        }
+        
+        .col-sm-6 {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <br />
+    <div class="container box">
+        <br />
+        <form method="post" id="register_form">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active_tab1" style="border:1px solid #ccc" id="list_login_details">Customer Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link inactive_tab1" id="list_personal_details" style="border:1px solid #ccc">Order Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link inactive_tab1" id="list_contact_details" style="border:1px solid #ccc">Upload Files</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link inactive_tab1" id="list_contact_details" style="border:1px solid #ccc">Payment Method</a>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link inactive_tab1" id="list_contact_details" style="border:1px solid #ccc">Confirmation</a>
+                </li>
+            </ul>
+            <div>
+                <div>
+                    <div class="qwerty">
+                        <div class="col-lg-12">Login Details</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-1">
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <label>Last Name:</label>
+                                        <input type="text" name="lName" id="lName" class="form-control" />
+                                        <span id="error_lastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <label>First Name:</label>
+                                        <input type="text" name="fName" id="fName" class="form-control" />
+                                        <span id="error_firstName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-1">
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="form-group">
+                                        <label>Contact No:</label>
+                                        <input type="text" name="contactNo" id="contactNo" class="form-control" />
+                                        <span id="error_contactNo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-1">
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="form-group">
+                                        <label>Email:</label>
+                                        <input type="text" name="email" id="email" class="form-control" />
+                                        <span id="error_email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-1">
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="form-group">
+                                        <label>Delivery Address:</label>
+                                        <input type="text" name="delivAdd" id="delivAdd" class="form-control" />
+                                        <span id="error_delivAdd" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                </div>
+                            </div>
+                            <br />
+                            <div align="center">
+                                <button type="button" name="btn_customer_details" id="btn_customer_details" class="btn">Next</button>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="personal_details">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Fill Personal Details</div>
+                        <div class="panel-body">
+                            <div class="field_wrapper">
+                                <div>
+                                    <input type="text" name="field_name[]" value="" />
+                                    <a href="javascript:void(0);" class="add_button" title="Add field"><img src="add-icon.png" /></a>
+                                </div>
+                            </div>
+                            <br />
+                            <div align="center">
+                                <button type="button" name="previous_btn_personal_details" id="previous_btn_personal_details" class="btn btn-default btn-lg">Previous</button>
+                                <button type="button" name="btn_personal_details" id="btn_personal_details" class="btn btn-info btn-lg">Next</button>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="contact_details">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Fill Contact Details</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label>Enter Address</label>
+                                <textarea name="address" id="address" class="form-control"></textarea>
+                                <span id="error_address" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Mobile No.</label>
+                                <input type="text" name="mobile_no" id="mobile_no" class="form-control" />
+                                <span id="error_mobile_no" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div align="center">
+                                <button type="button" name="previous_btn_contact_details" id="previous_btn_contact_details" class="btn btn-default btn-lg">Previous</button>
+                                <button type="button" name="btn_contact_details" id="btn_contact_details" class="btn btn-success btn-lg">Register</button>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function() {
+        //When Next Button is clicked for the Customer Details
+        $('#btn_customer_details').click(function() {
+
+            var error_lastName = '';
+            var error_password = '';
+            var error_contactNo = '';
+            var error_delivAdd = '';
+            var error_email = '';
+            var filter = /^[A-Za-z]+$/;
+            var filterContactNo = /^(09|\+639)\d{9}$/;
+            var filterEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+            //Validation for LastName
+            if ($.trim($('#lName').val()).length == 0) {
+                error_lastName = 'Last Name is required';
+                $('#error_lastName').text(error_lastName);
+                $('#lName').addClass('has-error');
+            } else {
+                if (!filter.test($('#lName').val())) {
+                    error_lastName = 'Invalid Last Name';
+                    $('#error_lastName').text(error_lastName);
+                    $('#lName').addClass('has-error');
+                } else {
+                    error_lastName = '';
+                    $('#error_lastName').text(error_lastName);
+                    $('#lName').removeClass('has-error');
+                }
+            }
+
+            //Validation for FirstName 
+            if ($.trim($('#fName').val()).length == 0) {
+                error_firstName = 'First Name is required';
+                $('#error_firstName').text(error_firstName);
+                $('#fName').addClass('has-error');
+            } else {
+                if (!filter.test($('#fName').val())) {
+                    error_firstName = 'Invalid First Name';
+                    $('#error_firstName').text(error_firstName);
+                    $('#fName').addClass('has-error');
+                } else {
+                    error_firstName = '';
+                    $('#error_firstName').text(error_firstName);
+                    $('#fName').removeClass('has-error');
+                }
+            }
+
+            //Validation for Contact No
+            if ($.trim($('#contactNo').val()).length == 0) {
+                error_contactNo = 'Contact No is required';
+                $('#error_contactNo').text(error_contactNo);
+                $('#contactNo').addClass('has-error');
+            } else {
+                if (!filterContactNo.test($('#contactNo').val())) {
+                    error_contactNo = 'Invalid Contact No';
+                    $('#error_contactNo').text(error_contactNo);
+                    $('#contactNo').addClass('has-error');
+                } else {
+                    error_contactNo = '';
+                    $('#error_contactNo').text(error_contactNo);
+                    $('#contactNo').removeClass('has-error');
+                }
+            }
+
+            //Validation for Email
+            if ($.trim($('#email').val()).length == 0) {
+                error_email = 'Email is required';
+                $('#error_email').text(error_email);
+                $('#email').addClass('has-error');
+            } else {
+                if (!filterEmail.test($('#email').val())) {
+                    error_email = 'Invalid Email Address';
+                    $('#error_email').text(error_email);
+                    $('#email').addClass('has-error');
+                } else {
+                    error_email = '';
+                    $('#error_email').text(error_email);
+                    $('#email').removeClass('has-error');
+                }
+            }
+
+            //Validation for DeliveryAddress
+            if ($.trim($('#delivAdd').val()).length == 0) {
+                error_delivAdd = 'Delivery Address is required';
+                $('#error_delivAdd').text(error_delivAdd);
+                $('#delivAdd').addClass('has-error');
+            } else {
+                error_delivAdd = '';
+                $('#error_delivAdd').text(error_delivAdd);
+                $('#delivAdd').removeClass('has-error');
+            }
+
+
+            if (error_lastName != '' || error_firstName != '' || error_contactNo != '' || error_email != '' || error_delivAdd != '') {
+                return false;
+            } else {
+                $('#list_login_details').removeClass('active active_tab1');
+                $('#list_login_details').removeAttr('href data-toggle');
+                $('#login_details').removeClass('active');
+                $('#list_login_details').addClass('inactive_tab1');
+                $('#list_personal_details').removeClass('inactive_tab1');
+                $('#list_personal_details').addClass('active_tab1 active');
+                $('#list_personal_details').attr('href', '#personal_details');
+                $('#list_personal_details').attr('data-toggle', 'tab');
+                $('#personal_details').addClass('active in');
+            }
+        });
+
+        $('#previous_btn_personal_details').click(function() {
+            $('#list_personal_details').removeClass('active active_tab1');
+            $('#list_personal_details').removeAttr('href data-toggle');
+            $('#personal_details').removeClass('active in');
+            $('#list_personal_details').addClass('inactive_tab1');
+            $('#list_login_details').removeClass('inactive_tab1');
+            $('#list_login_details').addClass('active_tab1 active');
+            $('#list_login_details').attr('href', '#login_details');
+            $('#list_login_details').attr('data-toggle', 'tab');
+            $('#login_details').addClass('active in');
+        });
+
+
+        $('#btn_personal_details').click(function() {
+            var error_first_name = '';
+            var error_last_name = '';
+
+            if ($.trim($('#first_name').val()).length == 0) {
+                error_first_name = 'First Name is required';
+                $('#error_first_name').text(error_first_name);
+                $('#first_name').addClass('has-error');
+            } else {
+                error_first_name = '';
+                $('#error_first_name').text(error_first_name);
+                $('#first_name').removeClass('has-error');
+            }
+
+            if ($.trim($('#last_name').val()).length == 0) {
+                error_last_name = 'Last Name is required';
+                $('#error_last_name').text(error_last_name);
+                $('#last_name').addClass('has-error');
+            } else {
+                error_last_name = '';
+                $('#error_last_name').text(error_last_name);
+                $('#last_name').removeClass('has-error');
+            }
+
+            if (error_first_name != '' || error_last_name != '') {
+                return false;
+            } else {
+                $('#list_personal_details').removeClass('active active_tab1');
+                $('#list_personal_details').removeAttr('href data-toggle');
+                $('#personal_details').removeClass('active');
+                $('#list_personal_details').addClass('inactive_tab1');
+                $('#list_contact_details').removeClass('inactive_tab1');
+                $('#list_contact_details').addClass('active_tab1 active');
+                $('#list_contact_details').attr('href', '#contact_details');
+                $('#list_contact_details').attr('data-toggle', 'tab');
+                $('#contact_details').addClass('active in');
+            }
+        });
+
+        $('#previous_btn_contact_details').click(function() {
+            $('#list_contact_details').removeClass('active active_tab1');
+            $('#list_contact_details').removeAttr('href data-toggle');
+            $('#contact_details').removeClass('active in');
+            $('#list_contact_details').addClass('inactive_tab1');
+            $('#list_personal_details').removeClass('inactive_tab1');
+            $('#list_personal_details').addClass('active_tab1 active');
+            $('#list_personal_details').attr('href', '#personal_details');
+            $('#list_personal_details').attr('data-toggle', 'tab');
+            $('#personal_details').addClass('active in');
+        });
+
+        $('#btn_contact_details').click(function() {
+            var error_address = '';
+            var error_mobile_no = '';
+            var mobile_validation = /^\d{10}$/;
+            if ($.trim($('#address').val()).length == 0) {
+                error_address = 'Address is required';
+                $('#error_address').text(error_address);
+                $('#address').addClass('has-error');
+            } else {
+                error_address = '';
+                $('#error_address').text(error_address);
+                $('#address').removeClass('has-error');
+            }
+
+            if ($.trim($('#mobile_no').val()).length == 0) {
+                error_mobile_no = 'Mobile Number is required';
+                $('#error_mobile_no').text(error_mobile_no);
+                $('#mobile_no').addClass('has-error');
+            } else {
+                if (!mobile_validation.test($('#mobile_no').val())) {
+                    error_mobile_no = 'Invalid Mobile Number';
+                    $('#error_mobile_no').text(error_mobile_no);
+                    $('#mobile_no').addClass('has-error');
+                } else {
+                    error_mobile_no = '';
+                    $('#error_mobile_no').text(error_mobile_no);
+                    $('#mobile_no').removeClass('has-error');
+                }
+            }
+            if (error_address != '' || error_mobile_no != '') {
+                return false;
+            } else {
+                $('#btn_contact_details').attr("disabled", "disabled");
+                $(document).css('cursor', 'prgress');
+                $("#register_form").submit();
+            }
+
+        });
+
+    });
+</script>

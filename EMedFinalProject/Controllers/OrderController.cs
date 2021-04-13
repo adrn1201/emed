@@ -24,10 +24,12 @@ namespace EMedFinalProject.Controllers
         {
             return View();
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Orders.ToListAsync());
+           
         }
+
         public IActionResult MercuryTerms()
         {
  
@@ -49,11 +51,9 @@ namespace EMedFinalProject.Controllers
                 applicationDbContext = await _context.Branches.Include(b => b.Pharmacy).Where(b => b.Pharmacy.PharmacyID == (int)id).ToListAsync();
 
             }
-            var model = new BranchesViewModel();
+            var model = new OrderViewModel();
             model.Branches = applicationDbContext;
             return View(model);
-            //var branchList = _context.Branches.Where(b => b.PharmacyID == 1);
-            //return View();
         }
 
         [HttpPost]
@@ -73,7 +73,7 @@ namespace EMedFinalProject.Controllers
                         var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
 
                         var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/prescription/", newFileName);
-                        record.Orders.Prescription = newFileName;
+                        record.Prescription = newFileName;
 
                         using var stream = new FileStream(filePath, FileMode.Create);
                         prescription.CopyTo(stream);
@@ -92,41 +92,49 @@ namespace EMedFinalProject.Controllers
                         var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
 
                         var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/validId/", newFileName);
-                        record.Orders.ValidID = newFileName;
+                        record.ValidID = newFileName;
 
                         using var stream = new FileStream(filePath, FileMode.Create);
                         validId.CopyTo(stream);
                     }
                 }
 
-                var branches = await _context.Branches.Where(b => b.BranchId == record.Orders.BranchID).SingleOrDefaultAsync();
+                var branch = await _context.Branches.Where(b => b.BranchId == record.BranchID).SingleOrDefaultAsync();
                 var order = new Order();
                 {
-                    order.LastName = record.Orders.LastName;
-                    order.FirstName = record.Orders.FirstName;
-                    order.DeliveryAddress = record.Orders.DeliveryAddress;
-                    order.ContactNo = record.Orders.ContactNo;
-                    order.Email = record.Orders.Email;
-                    order.Branch = branches;
-                    order.BranchID = record.Orders.BranchID;
-                    order.PaymentMethodID = record.PaymentMethods.PaymentMethodID;
-                    order.Prescription = record.Orders.Prescription;
-                    order.ValidID = record.Orders.ValidID;
+                    order.LastName = record.LastName;
+                    order.FirstName = record.FirstName;
+                    order.DeliveryAddress = record.DeliveryAddress;
+                    order.ContactNo = record.ContactNo;
+                    order.Email = record.Email;
+                    order.Branch = branch;
+                    //order.BranchID = record.BranchID;
+                    order.PaymentMethodID = record.MethodID;
+                    order.Prescription = record.Prescription;
+                    order.ValidID = record.ValidID;
 
                 }
+
+                _context.Orders.Add(order);
+               
 
 
                 foreach (var productOrders in record.OrderList)
                 {
                     var products = new OrdersDetail()
                     {
+                        Order = order,
                         ProductName = productOrders.ProductName,
                         Milligrams = productOrders.Milligrams,
                         Quantity = productOrders.Quantity,
                         Instructions = productOrders.Instructions
 
                     };
+                    _context.OrderDetails.Add(products);
                 }
+                _context.SaveChanges();
+
+
 
                 return RedirectToAction("OrderForm", "Account", new { success = "yes" });
 

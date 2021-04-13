@@ -1,4 +1,4 @@
-﻿@model EMedFinalProject.Models.BranchesViewModel;
+﻿@model EMedFinalProject.Models.OrderViewModel;
 @inject EMedFinalProject.Data.ApplicationDbContext _context;
 
 
@@ -18,7 +18,7 @@
 </div>
 <div class="container box" style="margin:120px auto;" data-aos="fade-up">
     <br />
-    <form method="post" id="order_form">
+    <form method="post" id="order_form" enctype="multipart/form-data">
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active_tab1" style="border:1px solid #ccc" id="list_branch_details">Select Branch</a>
@@ -48,7 +48,7 @@
 
                     <div class="panel-body">
                         <label class="control-label">Select Mercury Branch</label><span class="required">*</span>
-                        <select asp-for="Orders.Orders.BranchID" class="form-control" onchange="selectedSubjectName()" id="branchSelect" asp-items="@(new SelectList(branchList,"PharmacyID", "BranchLocation"))">
+                        <select name="BranchID" class="form-control" onchange="selectedSubjectName()" id="branchSelect" asp-items="@(new SelectList(branchList,"BranchId", "BranchLocation"))">
                             <option value="">--Select a Mercury Branch--</option>
                         </select>
                         <span id="error_branch" class="text-danger"></span>
@@ -69,31 +69,31 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Last Name:</label><span class="required">*</span>
-                                    <input type="text" asp-for="Orders.Orders.LastName" id="lName" class="form-control" />
+                                    <input type="text" asp-for="LastName" id="lName" class="form-control" />
                                     <span id="error_lastName" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>First Name:</label><span class="required">*</span>
-                                    <input type="text" asp-for="Orders.Orders.FirstName"  id="fName" class="form-control" />
+                                    <input type="text" asp-for="FirstName"  id="fName" class="form-control" />
                                     <span id="error_firstName" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Contact No:</label><span class="required">*</span>
-                            <input type="text" asp-for="Orders.Orders.ContactNo" id="contactNo" class="form-control" />
+                            <input type="text" asp-for="ContactNo" id="contactNo" class="form-control" />
                             <span id="error_contactNo" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label>Email:</label><span class="required">*</span>
-                            <input type="text" asp-for="Orders.Orders.Email" id="email" class="form-control" />
+                            <input type="text" asp-for="Email" id="email" class="form-control" />
                             <span id="error_email" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label>Delivery Address:</label><span class="required">*</span>
-                            <input type="text"  asp-for="Orders.Orders.DeliveryAddress" id="delivAdd" class="form-control" />
+                            <input type="text"  asp-for="DeliveryAddress" id="delivAdd" class="form-control" />
                             <span id="error_delivAdd" class="text-danger"></span>
                         </div>
                         <br />
@@ -117,17 +117,17 @@
                                     <div class="row" style="margin-bottom:12px;">
                                         <div class="col-sm-6">
                                             Product Name:<span class="required">*</span>
-                                            <input type="text" class="prodName" id="paramFieldName" name="Details[0].ProductName" placeholder="Product Name" />
+                                            <input type="text" class="prodName" id="paramFieldName" name="OrderList[0].ProductName" placeholder="Product Name" />
                                             <span id="error_ProductName" class="text-danger"></span>
                                         </div>
                                         <div class="col-sm-3">
                                             Quantity:<span class="required">*</span>
-                                            <input type="number" class="quant" id="paramFieldValue" name="Details[0].Quantity" value="" placeholder="Quantity" />
+                                            <input type="number" class="quant" id="paramFieldValue" name="OrderList[0].Quantity" value="" placeholder="Quantity" />
                                             <span id="error_quantity" class="text-danger"></span>
                                         </div>
                                         <div class="col-sm-3">
                                             Milligrams:<span class="required">*</span>
-                                            <input type="number" class="mil" id="paramMilValue" name="Details[0].Milligrams" value="" placeholder="Milligrams" />
+                                            <input type="number" class="mil" id="paramMilValue" name="OrderList[0].Milligrams" value="" placeholder="Milligrams" />
                                             <span id="error_milligrams" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -140,17 +140,17 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             Product Name:<span class="required">*</span>
-                                            <input type="text" class="prodName" id="paramFieldName" name="Details[%].ProductName" value="" placeholder="Product Name" />
+                                            <input type="text" class="prodName" id="paramFieldName" name="OrderList[%].ProductName" value="" placeholder="Product Name" />
                                             <span id="error_ProductName" class="text-danger"></span>
                                         </div>
                                         <div class="col-sm-3">
                                             Quantity:<span class="required">*</span>
-                                            <input type="number" class="quant" id="paramFieldValue" name="Details[%].Quantity" value="" placeholder="Quantity" />
+                                            <input type="number" class="quant" id="paramFieldValue" name="OrderList[%].Quantity" value="" placeholder="Quantity" />
                                             <span id="error_quantity" class="text-danger"></span>
                                         </div>
                                         <div class="col-sm-3">
                                             Milligrams:<span class="required">*</span>
-                                            <input type="number" class="mil" id="paramMilValue" name="Details[%].Milligrams" value="" placeholder="Milligrams" />
+                                            <input type="number" class="mil" id="paramMilValue" name="OrderList[%].Milligrams" value="" placeholder="Milligrams" />
                                             <span id="error_milligrams" class="text-danger"></span>
                                         </div>
                                         <a href="javascript:void(0);" id="remove_field" class="remCF">Remove Product</a>
@@ -203,7 +203,7 @@
                         <div class="panel-heading">Select Payment Method</div>*@
                     <div class="panel-body">
                         <label class="control-label">Payment Method</label><span class="required">*</span>
-                        <select asp-for="Orders.Orders.PaymentMethodID" class="form-control" id="paymentMethod" onchange="selectedPaymentName()" asp-items="@(new SelectList(categoryList, "PaymentMethodID", "Method"))">
+                        <select asp-for="MethodID" class="form-control" id="paymentMethod" onchange="selectedPaymentName()" asp-items="@(new SelectList(categoryList, "PaymentMethodID", "Method"))">
                             <option value="">--Select a Payment Method--</option>
                         </select>
                         <span id="error_paymentMethod" class="text-danger"></span>
