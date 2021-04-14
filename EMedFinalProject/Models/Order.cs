@@ -22,6 +22,14 @@ namespace EMedFinalProject.Models
         [Required(ErrorMessage = "Delivery Address is Required")]
         public string DeliveryAddress { get; set; }
 
+        [Display(Name = "Date Added")]
+        public DateTime DateAdded { get; set; }
+
+        [Display(Name = "Date Modified")]
+        public DateTime? DateModified { get; set; }
+        [Display(Name = "Order Status")]
+        public OrderStatus? Status { get; set; }
+
         [Required(ErrorMessage = "Contact No. is Required")]
         [RegularExpression(@"^(09|\+639)\d{9}$", ErrorMessage = "Please enter a valid Contact No.")]
         public string ContactNo { get; set; }
@@ -41,5 +49,11 @@ namespace EMedFinalProject.Models
         public virtual Branch Branch { get; set; }
         public int PaymentMethodID { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
+    }
+
+    public enum OrderStatus
+    {
+        Pending = 1,
+        Confirmed = 2
     }
 }

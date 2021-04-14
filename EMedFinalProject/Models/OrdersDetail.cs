@@ -23,7 +23,13 @@ namespace EMedFinalProject.Models
         [Required(ErrorMessage = "Milligrams of Product is Required.")]
         public int Milligrams { get; set; }
 
+        [Range(0.00, 2000.00, ErrorMessage = "Invalid price range.")]
+        [Required]
+        public decimal EstimatedPrice { get; set; }
+
         [DataType(DataType.MultilineText)]
         public string Instructions { get; set; }
+
+
     }
 }

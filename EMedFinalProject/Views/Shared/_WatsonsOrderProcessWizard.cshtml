@@ -57,7 +57,7 @@
             font-weight: bold;
             margin-top: 20px;
             margin-bottom: 20px;
-            color: red;
+            color: #00cca3;
             font-size: 20px;
         }
 
@@ -91,7 +91,7 @@
             color: var(--white);
             font-weight: 500;
             margin-left: 5px;
-            background-color: #ff1a1a;
+            background-color: #00cca3;
         }
 
         .submit {
@@ -159,7 +159,7 @@
         #previous_btn_upload_details,
         #previous_btn_payment_details,
         #previous_btn_confirm_details {
-            background-color: var(--orange);
+            background-color: var(--red);
             border: 0;
             box-shadow: none;
             padding: 7px 30px;
@@ -207,7 +207,7 @@
             text-align: center;
             width: 100%;
             padding: 8px;
-            background: linear-gradient(to right, rgb(234, 30, 36) 0%, rgb(234, 30, 36) 100%);
+            background: #00cca3;
             border: 1px solid black;
             color: white;
             font-weight: bold;
@@ -277,7 +277,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links" id="mercuryFootLinks">
+                    <div class="col-lg-3 col-md-6 footer-links" id="watsonsFootLinks">
                         <h4>Order from a Pharmacy</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="~/Order/TgpTerms">TGP</a></li>
@@ -331,12 +331,12 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
-        function ShowHideMercuryLinksFooter() {
+        function ShowHideTgpLinksFooter() {
             var d = new Date();
             var dayofweek = d.getDay();
             var hourofday = d.getHours();
             if ((dayofweek === 0 && hourofday < 8) || (dayofweek === 0 && hourofday >= 18) || (dayofweek === 1 && hourofday < 8) || (dayofweek === 1 && hourofday >= 18) || (dayofweek === 2 && hourofday < 8) || (dayofweek === 2 && hourofday >= 18) || (dayofweek === 3 && hourofday < 8) || (dayofweek === 3 && hourofday >= 18) || (dayofweek === 4 && hourofday < 8) || (dayofweek === 4 && hourofday >= 18) || (dayofweek === 5 && hourofday < 8) || (dayofweek === 5 && hourofday >= 18) || (dayofweek === 6 && hourofday < 8) || (dayofweek === 6 && hourofday >= 18)) {
-                $("#mercuryFootLinks a").click(function (e) {
+                $("#watsonsFootLinks a").click(function (e) {
                     e.preventDefault();
                     swal("Service Momentarily Closed", "Our Order and Delivery Service will resume at 8am");
                 });
@@ -346,7 +346,7 @@
         }
         $(document).ready(function () {
 
-            ShowHideMercuryLinksFooter();
+            ShowHideTgpLinksFooter();
 
         });
     </script>

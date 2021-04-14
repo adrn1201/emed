@@ -1,17 +1,17 @@
 ﻿@model EMedFinalProject.Models.OrderViewModel;
 @inject EMedFinalProject.Data.ApplicationDbContext _context;
 
-
 @{
-    Layout = "~/Views/Shared/_OrderProcessWizard.cshtml";
-    ViewData["Title"] = "Mercury Order Now";
-    var branchList = _context.Branches.Where(b => b.PharmacyID == 1).ToList();
+    Layout = "~/Views/Shared/_WatsonsOrderProcessWizard.cshtml";
+    ViewData["Title"] = "Watsons Order Now";
+    var branchList = _context.Branches.Where(b => b.PharmacyID == 3).ToList();
     var categoryList = _context.Methods.ToList();
 }
+
 <div id="ordersProc" class="d-flex align-items-center">
     <div class="container" data-aos="zoom-out" data-aos-delay="100">
-        <h1 style="color:red; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-            mercury drug
+        <h1 style="color:#03a0a0; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            watsons
         </h1>
         <h2>Online Order Form</h2>
     </div>
@@ -42,14 +42,14 @@
         <div class="qwerty" style="margin-top:1px;">
             <div class="tab-content" style="margin-top:16px;">
                 <div class="tab-pane active" id="branch_details">
-                    <div class="headingIndicator">Choose a Mercury Branch</div>
+                    <div class="headingIndicator">Choose a Watsons Branch</div>
                     @*<div class="panel panel-default">*@
                     @*<div class="panel-heading" style="text-align:center;">Choose a Mercury Branch</div>*@
 
                     <div class="panel-body">
-                        <label class="control-label">Select Mercury Branch</label><span class="required">*</span>
+                        <label class="control-label">Select Watsons Branch</label><span class="required">*</span>
                         <select name="BranchID" class="form-control" onchange="selectedSubjectName()" id="branchSelect" asp-items="@(new SelectList(branchList,"BranchId", "BranchLocation"))">
-                            <option value="">--Select a Mercury Branch--</option>
+                            <option value="">--Select a Watsons Branch--</option>
                         </select>
                         <span id="error_branch" class="text-danger"></span>
                         <br />
@@ -109,70 +109,70 @@
                     <div class="headingIndicator">Order Items</div>
                     @*<div class="panel panel-default">
                         <div class="panel-heading">Order Items</div>*@
-                <div class="panel-body">
-                    <table id="paramsFields">
-                        <tr valign="top">
-                            <td scope="row"></td>
-                            <td>
-                                <div class="row" style="margin-bottom:12px;">
-                                    <div class="col-sm-6">
-                                        <label>Product Name:</label><span class="required">*</span>
-                                        <input type="text" class="prodName" id="paramFieldName" name="OrderList[0].ProductName" placeholder="Product Name" />
-                                        <span id="error_ProductName" class="text-danger"></span>
+                    <div class="panel-body">
+                        <table id="paramsFields">
+                            <tr valign="top">
+                                <td scope="row"></td>
+                                <td>
+                                    <div class="row" style="margin-bottom:12px;">
+                                        <div class="col-sm-6">
+                                            <label>Product Name:</label><span class="required">*</span>
+                                            <input type="text" class="prodName" id="paramFieldName" name="OrderList[0].ProductName" placeholder="Product Name" />
+                                            <span id="error_ProductName" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label>Quantity:</label><span class="required">*</span>
+                                            <input type="number" class="quant" id="paramFieldValue" name="OrderList[0].Quantity" value="" placeholder="Quantity" />
+                                            <span id="error_quantity" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label>Milligrams:</label><span class="required">*</span>
+                                            <input type="number" class="mil" id="paramMilValue" name="OrderList[0].Milligrams" value="" placeholder="Milligrams" />
+                                            <span id="error_milligrams" class="text-danger"></span>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <label>Quantity:</label><span class="required">*</span>
-                                        <input type="number" class="quant" id="paramFieldValue" name="OrderList[0].Quantity" value="" placeholder="Quantity" />
-                                        <span id="error_quantity" class="text-danger"></span>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>Milligrams:</label><span class="required">*</span>
-                                        <input type="number" class="mil" id="paramMilValue" name="OrderList[0].Milligrams" value="" placeholder="Milligrams" />
-                                        <span id="error_milligrams" class="text-danger"></span>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
 
-                        <tr id="template" valign="top" hidden="hidden" aria-hidden="true">
-                            <td></td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Product Name:</label><span class="required">*</span>
-                                        <input type="text" class="prodName" id="paramFieldName" name="OrderList[%].ProductName" value="" placeholder="Product Name" />
-                                        <span id="error_ProductName" class="text-danger"></span>
+                            <tr id="template" valign="top" hidden="hidden" aria-hidden="true">
+                                <td></td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label>Product Name:</label><span class="required">*</span>
+                                            <input type="text" class="prodName" id="paramFieldName" name="OrderList[%].ProductName" value="" placeholder="Product Name" />
+                                            <span id="error_ProductName" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label>Quantity:</label><span class="required">*</span>
+                                            <input type="number" class="quant" id="paramFieldValue" name="OrderList[%].Quantity" value="" placeholder="Quantity" />
+                                            <span id="error_quantity" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label>Milligrams:</label><span class="required">*</span>
+                                            <input type="number" class="mil" id="paramMilValue" name="OrderList[%].Milligrams" value="" placeholder="Milligrams" />
+                                            <span id="error_milligrams" class="text-danger"></span>
+                                        </div>
+                                        <a href="javascript:void(0);" id="remove_field" class="remCF">Remove Product</a>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <label>Quantity:</label><span class="required">*</span>
-                                        <input type="number" class="quant" id="paramFieldValue" name="OrderList[%].Quantity" value="" placeholder="Quantity" />
-                                        <span id="error_quantity" class="text-danger"></span>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>Milligrams:</label><span class="required">*</span>
-                                        <input type="number" class="mil" id="paramMilValue" name="OrderList[%].Milligrams" value="" placeholder="Milligrams" />
-                                        <span id="error_milligrams" class="text-danger"></span>
-                                    </div>
-                                    <a href="javascript:void(0);" id="remove_field" class="remCF">Remove Product</a>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
 
-                    </table>
-                    <a href="javascript:void(0);" id="add_field_button" class="addCF">+ Add Products</a>
+                        </table>
+                        <a href="javascript:void(0);" id="add_field_button" class="addCF">+ Add Products</a>
 
-                    <div class="form-group" style="margin-top:30px;">
-                        <label>Estimated Price of Items:</label><span class="required">*</span>
-                        <input type="number" class="estPrice" id="estPrice" name="OrderList[0].EstimatedPrice" placeholder="Max. PHP 2000.00" />
-                        <span id="error_estPrice" class="text-danger"></span>
+                        <div class="form-group" style="margin-top:30px;">
+                            <label>Estimated Price of Items:</label><span class="required">*</span>
+                            <input type="number" class="estPrice" id="estPrice" name="OrderList[0].EstimatedPrice" placeholder="Max. PHP 2000.00" />
+                            <span id="error_estPrice" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label style="margin-top:10px;">Instructions</label>
+                            <br />
+                            <textarea style="resize:none;" rows="5" cols="144" name="OrderList[0].Instructions" placeholder="Type your Instructions for your orders here" class="textarea"></textarea>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label style="margin-top:10px;">Instructions</label>
-                        <br />
-                        <textarea style="resize:none;" rows="5" cols="144" name="OrderList[0].Instructions" placeholder="Type your Instructions for your orders here" class="textarea"></textarea>
-                    </div>
-                </div>
                     <br />
                     <div align="center">
                         <button type="button" name="previous_btn_order_details" id="previous_btn_order_details">Previous</button>
@@ -301,7 +301,7 @@
                     <div class="panel-body">
                         <table class="confTable">
                             <tr class="trConf">
-                                <th class="header">Selected Mercury Branch</th>
+                                <th class="header">Selected Watsons Branch</th>
                             </tr>
                         </table>
                         <table class="confTable">

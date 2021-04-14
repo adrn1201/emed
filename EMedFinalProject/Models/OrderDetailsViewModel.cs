@@ -13,6 +13,7 @@ namespace EMedFinalProject.Models
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public int Milligrams { get; set; }
+        public decimal EstimatedPrice { get; set; }
         public string Instructions { get; set; }
     }
 }

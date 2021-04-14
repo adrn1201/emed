@@ -106,7 +106,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links">
+                    <div class="col-lg-3 col-md-6 footer-links" id="termsFootLinks">
                         <h4>Order from a Pharmacy</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="~/Order/TgpTerms">TGP</a></li>
@@ -158,6 +158,26 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        function ShowHideTermLinksFooter() {
+            var d = new Date();
+            var dayofweek = d.getDay();
+            var hourofday = d.getHours();
+            if ((dayofweek === 0 && hourofday < 8) || (dayofweek === 0 && hourofday >= 18) || (dayofweek === 1 && hourofday < 8) || (dayofweek === 1 && hourofday >= 18) || (dayofweek === 2 && hourofday < 8) || (dayofweek === 2 && hourofday >= 18) || (dayofweek === 3 && hourofday < 8) || (dayofweek === 3 && hourofday >= 18) || (dayofweek === 4 && hourofday < 8) || (dayofweek === 4 && hourofday >= 18) || (dayofweek === 5 && hourofday < 8) || (dayofweek === 5 && hourofday >= 18) || (dayofweek === 6 && hourofday < 8) || (dayofweek === 6 && hourofday >= 18)) {
+                $("#termsFootLinks a").click(function (e) {
+                    e.preventDefault();
+                    swal("Service Momentarily Closed", "Our Order and Delivery Service will resume at 8am");
+                });
+
+            }
+
+        }
+        $(document).ready(function () {
+
+            ShowHideTermLinksFooter();
+
+        });
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

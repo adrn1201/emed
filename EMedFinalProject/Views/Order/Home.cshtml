@@ -35,7 +35,7 @@
 
     <!--Extra-->
     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -43,7 +43,7 @@
     <!-- ======= Top Bar ======= -->
     <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
         <div class="container d-flex">
-        
+
         </div>
     </div>
 
@@ -52,7 +52,7 @@
         <div class="container d-flex align-items-center">
 
             <h1 class="logo mr-auto"><a href="~/Order/Home"><span style="color:blue;">E</span><span class="Dash" style="color: pink;">-</span><span class="Dash" style="color:Red;">Med</span></a></h1>
-           
+
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li class="active"><a href="~/Order/Home">Home</a></li>
@@ -81,7 +81,17 @@
         </div>
     </section>
     <!-- End Hero -->
-
+    @if (ViewBag.success)
+    {
+       <script>
+           swal({
+               title: "Order Successfully Placed",
+               text: "Please check your email for your order number and status",
+               icon: "success",
+               button: "Ok",
+           });
+       </script>
+    }
     <main id="main">
 
         <!-- ======= Featured Services Section ======= -->
@@ -171,7 +181,6 @@
             </div>
         </section>
         <!-- End About Section -->
-       
         <!-- ======= Counts Section ======= -->
         <section id="counts" class="counts">
             <div class="container" data-aos="fade-up">
@@ -214,7 +223,7 @@
 
             </div>
         </section>
-       
+
         <!-- ======= Services Section ======= -->
         <section id="services" class="services">
             <div class="container" data-aos="fade-up">
@@ -227,29 +236,29 @@
 
                 <div class="row">
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="icon-box">
+                        <div class="icon-box" id="disLink">
                             <img src="~/Homepage prop/assets/img/clients/client-9.png" class="img-fluid" alt="">
-                            <h4 style="margin-top:30px;"><a href="~/Order/TgpTerms">TGP</a></h4>
+                            <h4 style="margin-top:30px;"><a href="~/Order/TgpTerms" id="disabledAtTime">TGP</a></h4>
                             <p class="card-text" style="color:black; margin-bottom:10px;"><b>Delivery Service Time:</b> 8am to 6pm<span style="color:red;">*</span></p>
                             <p>Click the name TGP to Order</p>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="icon-box">
+                        <div class="icon-box" id="disLink">
                             <img src="~/Homepage prop/assets/img/clients/client-8.png" class="img-fluid" alt="">
-                          
+
                             <br />
-                            <h4 style="margin-top:70px;"><a href="~/Order/WatsonsTerms">Watsons</a></h4>
+                            <h4 style="margin-top:70px;"><a href="~/Order/WatsonsTerms" id="disabledAtTime">Watsons</a></h4>
                             <p class="card-text" style="color:black; margin-bottom:10px;"><b>Delivery Service Time:</b> 8am to 6pm<span style="color:red;">*</span></p>
                             <p>Click the name Watsons to order </p>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="icon-box">
+                        <div class="icon-box" id="disLink">
                             <img src="~/Homepage prop/assets/img/mercury-drug-logo.jpg" class="img-fluid" alt="">
-                            <h4 style="margin-top:1px;"><a href="~/Order/MercuryTerms">Mercury Drug</a></h4>
+                            <h4 style="margin-top:1px;"><a href="~/Order/MercuryTerms" id="disabledAtTime">Mercury Drug</a></h4>
                             <p class="card-text" style="color:black; margin-bottom:10px;"><b>Delivery Service Time:</b>8am to 6pm<span style="color:red;">*</span></p>
                             <p>Click the name Mercury Drug to order</p>
                         </div>
@@ -260,7 +269,6 @@
             </div>
         </section>
         <!-- End Services Section -->
-       
         <!-- ======= Frequently Asked Questions Section ======= -->
         <section id="faq" class="faq section-bg">
             <div class="container" data-aos="fade-up">
@@ -315,7 +323,7 @@
                 </div>
 
                 <div class="row" data-aos="fade-up" data-aos-delay="100">
-                  
+
 
                 </div>
 
@@ -388,7 +396,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links">
+                    <div class="col-lg-3 col-md-6 footer-links" id="footLinks">
                         <h4>Order from a Pharmacy</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="~/Order/TgpTerms">TGP</a></li>
@@ -436,7 +444,43 @@
 
     <!-- Template Main JS File -->
     <script src="~/Homepage prop/assets/js/main.js"></script>
+    <script>
+        function ShowHide() {
+            var d = new Date();
+            var dayofweek = d.getDay();
+            var hourofday = d.getHours();
+            if ((dayofweek === 0 && hourofday < 8) || (dayofweek === 0 && hourofday >= 18) || (dayofweek === 1 && hourofday < 8) || (dayofweek === 1 && hourofday >= 18) || (dayofweek === 2 && hourofday < 8) || (dayofweek === 2 && hourofday >= 18) || (dayofweek === 3 && hourofday < 8) || (dayofweek === 3 && hourofday >= 18) || (dayofweek === 4 && hourofday < 8) || (dayofweek === 4 && hourofday >= 18) || (dayofweek === 5 && hourofday < 8) || (dayofweek === 5 && hourofday >= 18) || (dayofweek === 6 && hourofday < 8) || (dayofweek === 6 && hourofday >= 18)) {
+                $("#footLinks a").click(function (e) {
+                    e.preventDefault();
+                    swal("Service Momentarily Closed", "Our Order and Delivery Service will resume at 8am");
+                });
+               
+            }
 
+        }
+        function ShowHideFooter() {
+            var d = new Date();
+            var dayofweek = d.getDay();
+            var hourofday = d.getHours();
+            if ((dayofweek === 0 && hourofday < 8) || (dayofweek === 0 && hourofday >= 18) || (dayofweek === 1 && hourofday < 8) || (dayofweek === 1 && hourofday >= 18) || (dayofweek === 2 && hourofday < 8) || (dayofweek === 2 && hourofday >= 18) || (dayofweek === 3 && hourofday < 8) || (dayofweek === 3 && hourofday >= 18) || (dayofweek === 4 && hourofday < 8) || (dayofweek === 4 && hourofday >= 18) || (dayofweek === 5 && hourofday < 8) || (dayofweek === 5 && hourofday >= 18) || (dayofweek === 6 && hourofday < 8) || (dayofweek === 6 && hourofday >= 18)) {
+                $("#disLink a").click(function (e) {
+                    e.preventDefault();
+                    swal("Service Momentarily Closed", "Our Order and Delivery Service will resume at 8am");
+                });
+
+            }
+
+        }
+        $(document).ready(function () {
+
+            ShowHide();
+            ShowHideFooter();
+
+        });
+
+        
+
+    </script>
 </body>
 
 </html>

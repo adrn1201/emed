@@ -4,14 +4,16 @@ using EMedFinalProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EMedFinalProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210413142554_AddDateAddedDateModified")]
+    partial class AddDateAddedDateModified
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,9 +165,6 @@ namespace EMedFinalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Status")
-                        .HasColumnType("int");
-
                     b.Property<string>("ValidID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -185,9 +184,6 @@ namespace EMedFinalProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("EstimatedPrice")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Instructions")
                         .HasColumnType("nvarchar(max)");

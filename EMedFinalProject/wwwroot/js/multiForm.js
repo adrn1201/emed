@@ -166,6 +166,7 @@
         var error_ProductName = '';
         var error_quantity = '';
         var error_milligrams = '';
+        var error_estPrice = '';
 
         //validate Product Field
         if ($.trim($('#paramFieldName').val()).length == 0) {
@@ -207,8 +208,24 @@
             $('#paramMilValue').removeClass('has-error');
         }
 
+        //Validate Quantity Field
+        if ($.trim($('#estPrice').val()).length == 0) {
+            error_estPrice = 'Estimated Price is required';
+            $('#error_estPrice').text(error_estPrice);
+            $('#estPrice').addClass('has-error');
+        } else {
+            if (($('#estPrice').val() > 2000.00)) {
+                error_estPrice = 'Maximum of 2000 Pesos';
+                $('#error_estPrice').text(error_estPrice);
+                $('#estPrice').addClass('has-error');
+            } else {
+                error_estPrice = '';
+                $('#error_estPrice').text(error_estPrice);
+                $('#estPrice').removeClass('has-error');
+            }
 
-        if (error_ProductName != '' || error_quantity != '' || error_milligrams != '') {
+        }
+        if (error_ProductName != '' || error_quantity != '' || error_milligrams != '' || error_estPrice != '') {
             return false;
         } else {
             $('#list_personal_details').removeClass('active active_tab1');
@@ -242,7 +259,7 @@
 
         //Validate prescription Field
         if ($.trim($('#customFile').val()).length == 0) {
-            error_prescription = 'Uploading of Prescription image is required';
+            error_prescription = 'Uploading of Prescription is required';
             $('#error_prescription').text(error_prescription);
             $('#customFile').addClass('has-error');
         } else {
@@ -253,7 +270,7 @@
 
         //Validate valid ID Field
         if ($.trim($('#validIdFile').val()).length == 0) {
-            error_validId = 'Uploading of Valid ID image is required';
+            error_validId = 'Uploading of Valid ID is required';
             $('#error_validId').text(error_validId);
             $('#validIdFile').addClass('has-error');
         } else {
