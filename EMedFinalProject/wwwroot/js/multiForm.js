@@ -160,97 +160,96 @@
         $('#login_details').addClass('active in');
     });
 
-  
     //2nd Step Order Items
-    $('#btn_order_details').click(function () {
-        var error_ProductName = '';
-        var error_quantity = '';
-        var error_milligrams = '';
-        var error_estPrice = '';
+    //$('#btn_order_details').click(function () {
+    //    var error_ProductName = '';
+    //    var error_quantity = '';
+    //    var error_milligrams = '';
+    //    var error_estPrice = '';
 
-        //validate Product Field
-        if ($.trim($('#paramFieldName').val()).length == 0) {
-            error_ProductName = 'Product is required';
-            $('#error_ProductName').text(error_ProductName);
-            $('#paramFieldName').addClass('has-error');
-        } else {
-            error_ProductName = '';
-            $('#error_ProductName').text(error_ProductName);
-            $('#paramFieldName').removeClass('has-error');
-        }
+    //    //validate Product Field
+    //    if ($.trim($('#paramFieldName').val()).length == 0) {
+    //        error_ProductName = 'Product is required';
+    //        $('#error_ProductName').text(error_ProductName);
+    //        $('#paramFieldName').addClass('has-error');
+    //    } else {
+    //        error_ProductName = '';
+    //        $('#error_ProductName').text(error_ProductName);
+    //        $('#paramFieldName').removeClass('has-error');
+    //    }
 
-        //Validate Quantity Field
-        if ($.trim($('#paramFieldValue').val()).length == 0) {
-            error_quantity = 'Quantity is required';
-            $('#error_quantity').text(error_quantity);
-            $('#paramFieldValue').addClass('has-error');
-        } else {
-            if (($('#paramFieldValue').val() > 10)) {
-                error_quantity = 'Maximum of 10 items';
-                $('#error_quantity').text(error_quantity);
-                $('#paramFieldValue').addClass('has-error');
-            } else {
-                error_quantity = '';
-                $('#error_quantity').text(error_quantity);
-                $('#paramFieldValue').removeClass('has-error');
-            }
+    //    //Validate Quantity Field
+    //    if ($.trim($('#paramFieldValue').val()).length == 0) {
+    //        error_quantity = 'Quantity is required';
+    //        $('#error_quantity').text(error_quantity);
+    //        $('#paramFieldValue').addClass('has-error');
+    //    } else {
+    //        if (($('#paramFieldValue').val() > 10)) {
+    //            error_quantity = 'Maximum of 10 items';
+    //            $('#error_quantity').text(error_quantity);
+    //            $('#paramFieldValue').addClass('has-error');
+    //        } else {
+    //            error_quantity = '';
+    //            $('#error_quantity').text(error_quantity);
+    //            $('#paramFieldValue').removeClass('has-error');
+    //        }
            
-        }
+    //    }
 
-        //Validate Milligrams Field
-        if ($.trim($('#paramMilValue').val()).length == 0) {
-            error_milligrams = 'Milligrams is required';
-            $('#error_milligrams').text(error_milligrams);
-            $('#paramMilValue').addClass('has-error');
-        } else {
-            error_milligrams = '';
-            $('#error_milligrams').text(error_milligrams);
-            $('#paramMilValue').removeClass('has-error');
-        }
+    //    //Validate Milligrams Field
+    //    if ($.trim($('#paramMilValue').val()).length == 0) {
+    //        error_milligrams = 'Milligrams is required';
+    //        $('#error_milligrams').text(error_milligrams);
+    //        $('#paramMilValue').addClass('has-error');
+    //    } else {
+    //        error_milligrams = '';
+    //        $('#error_milligrams').text(error_milligrams);
+    //        $('#paramMilValue').removeClass('has-error');
+    //    }
 
-        //Validate Quantity Field
-        if ($.trim($('#estPrice').val()).length == 0) {
-            error_estPrice = 'Estimated Price is required';
-            $('#error_estPrice').text(error_estPrice);
-            $('#estPrice').addClass('has-error');
-        } else {
-            if (($('#estPrice').val() > 2000.00)) {
-                error_estPrice = 'Maximum of 2000 Pesos';
-                $('#error_estPrice').text(error_estPrice);
-                $('#estPrice').addClass('has-error');
-            } else {
-                error_estPrice = '';
-                $('#error_estPrice').text(error_estPrice);
-                $('#estPrice').removeClass('has-error');
-            }
+    //    
+    //    if ($.trim($('#estPrice').val()).length == 0) {
+    //        error_estPrice = 'Estimated Price is required';
+    //        $('#error_estPrice').text(error_estPrice);
+    //        $('#estPrice').addClass('has-error');
+    //    } else {
+    //        if (($('#estPrice').val() > 2000.00)) {
+    //            error_estPrice = 'Maximum of 2000 Pesos';
+    //            $('#error_estPrice').text(error_estPrice);
+    //            $('#estPrice').addClass('has-error');
+    //        } else {
+    //            error_estPrice = '';
+    //            $('#error_estPrice').text(error_estPrice);
+    //            $('#estPrice').removeClass('has-error');
+    //        }
 
-        }
-        if (error_ProductName != '' || error_quantity != '' || error_milligrams != '' || error_estPrice != '') {
-            return false;
-        } else {
-            $('#list_personal_details').removeClass('active active_tab1');
-            $('#list_personal_details').removeAttr('href data-toggle');
-            $('#personal_details').removeClass('active');
-            $('#list_personal_details').addClass('inactive_tab1');
-            $('#list_contact_details').removeClass('inactive_tab1');
-            $('#list_contact_details').addClass('active_tab1 active');
-            $('#list_contact_details').attr('href', '#contact_details');
-            $('#list_contact_details').attr('data-toggle', 'tab');
-            $('#contact_details').addClass('active in');
-        }
-    });
+    //    }
+    //    if (error_ProductName != '' || error_quantity != '' || error_milligrams != '' || error_estPrice != '') {
+    //        return false;
+    //    } else {
+    //        $('#list_personal_details').removeClass('active active_tab1');
+    //        $('#list_personal_details').removeAttr('href data-toggle');
+    //        $('#personal_details').removeClass('active');
+    //        $('#list_personal_details').addClass('inactive_tab1');
+    //        $('#list_contact_details').removeClass('inactive_tab1');
+    //        $('#list_contact_details').addClass('active_tab1 active');
+    //        $('#list_contact_details').attr('href', '#contact_details');
+    //        $('#list_contact_details').attr('data-toggle', 'tab');
+    //        $('#contact_details').addClass('active in');
+    //    }
+    //});
 
-    $('#previous_btn_upload_details').click(function () {
-        $('#list_contact_details').removeClass('active active_tab1');
-        $('#list_contact_details').removeAttr('href data-toggle');
-        $('#contact_details').removeClass('active in');
-        $('#list_contact_details').addClass('inactive_tab1');
-        $('#list_personal_details').removeClass('inactive_tab1');
-        $('#list_personal_details').addClass('active_tab1 active');
-        $('#list_personal_details').attr('href', '#personal_details');
-        $('#list_personal_details').attr('data-toggle', 'tab');
-        $('#personal_details').addClass('active in');
-    });
+    //$('#previous_btn_upload_details').click(function () {
+    //    $('#list_contact_details').removeClass('active active_tab1');
+    //    $('#list_contact_details').removeAttr('href data-toggle');
+    //    $('#contact_details').removeClass('active in');
+    //    $('#list_contact_details').addClass('inactive_tab1');
+    //    $('#list_personal_details').removeClass('inactive_tab1');
+    //    $('#list_personal_details').addClass('active_tab1 active');
+    //    $('#list_personal_details').attr('href', '#personal_details');
+    //    $('#list_personal_details').attr('data-toggle', 'tab');
+    //    $('#personal_details').addClass('active in');
+    //});
 
     //4th Step Upload Items
     $('#btn_upload_details').click(function () {

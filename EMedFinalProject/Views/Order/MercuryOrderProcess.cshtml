@@ -18,7 +18,7 @@
 </div>
 <div class="container box" style="margin:120px auto;" data-aos="fade-up">
     <br />
-    <form method="post" id="order_form" enctype="multipart/form-data">
+    <form method="post" class="commentForm" id="order_form" enctype="multipart/form-data">
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active_tab1" style="border:1px solid #ccc" id="list_branch_details">Select Branch</a>
@@ -43,9 +43,6 @@
             <div class="tab-content" style="margin-top:16px;">
                 <div class="tab-pane active" id="branch_details">
                     <div class="headingIndicator">Choose a Mercury Branch</div>
-                    @*<div class="panel panel-default">*@
-                    @*<div class="panel-heading" style="text-align:center;">Choose a Mercury Branch</div>*@
-
                     <div class="panel-body">
                         <label class="control-label">Select Mercury Branch</label><span class="required">*</span>
                         <select name="BranchID" class="form-control" onchange="selectedSubjectName()" id="branchSelect" asp-items="@(new SelectList(branchList,"BranchId", "BranchLocation"))">
@@ -58,12 +55,9 @@
                         </div>
                         <br />
                     </div>
-                    @*</div>*@
                 </div>
                 <div class="tab-pane fade" id="login_details">
                     <div class="headingIndicator">Personal Details</div>
-                    @*<div class="panel panel-default">
-                        <div class="panel-heading" style="text-align:center;">Personal Details</div>*@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-6">
@@ -103,89 +97,50 @@
                         </div>
                         <br />
                     </div>
-                    @*</div>*@
                 </div>
                 <div class="tab-pane fade" id="personal_details">
                     <div class="headingIndicator">Order Items</div>
-                    @*<div class="panel panel-default">
-                        <div class="panel-heading">Order Items</div>*@
-                <div class="panel-body">
-                    <table id="paramsFields">
-                        <tr valign="top">
-                            <td scope="row"></td>
-                            <td>
-                                <div class="row" style="margin-bottom:12px;">
-                                    <div class="col-sm-6">
-                                        <label>Product Name:</label><span class="required">*</span>
-                                        <input type="text" class="prodName" id="paramFieldName" name="OrderList[0].ProductName" placeholder="Product Name" />
-                                        <span id="error_ProductName" class="text-danger"></span>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>Quantity:</label><span class="required">*</span>
-                                        <input type="number" class="quant" id="paramFieldValue" name="OrderList[0].Quantity" value="" placeholder="Quantity" />
-                                        <span id="error_quantity" class="text-danger"></span>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>Milligrams:</label><span class="required">*</span>
-                                        <input type="number" class="mil" id="paramMilValue" name="OrderList[0].Milligrams" value="" placeholder="Milligrams" />
-                                        <span id="error_milligrams" class="text-danger"></span>
-                                    </div>
+                    <div class="panel-body">
+                        <div id="inputs">
+                            <div class="row" style="margin-bottom:20px;">
+                                <div class="col-sm-6">
+                                    <label>Product Name:</label><span class="required">*</span>
+                                    <input type="text" class="prodName" id="paramFieldName" name="OrderList[0].ProductName" placeholder="Product Name" />
                                 </div>
-                            </td>
-                        </tr>
-
-                        <tr id="template" valign="top" hidden="hidden" aria-hidden="true">
-                            <td></td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Product Name:</label><span class="required">*</span>
-                                        <input type="text" class="prodName" id="paramFieldName" name="OrderList[%].ProductName" value="" placeholder="Product Name" />
-                                        <span id="error_ProductName" class="text-danger"></span>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>Quantity:</label><span class="required">*</span>
-                                        <input type="number" class="quant" id="paramFieldValue" name="OrderList[%].Quantity" value="" placeholder="Quantity" />
-                                        <span id="error_quantity" class="text-danger"></span>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>Milligrams:</label><span class="required">*</span>
-                                        <input type="number" class="mil" id="paramMilValue" name="OrderList[%].Milligrams" value="" placeholder="Milligrams" />
-                                        <span id="error_milligrams" class="text-danger"></span>
-                                    </div>
-                                    <a href="javascript:void(0);" id="remove_field" class="remCF">Remove Product</a>
+                                <div class="col-sm-3">
+                                    <label>Quantity:</label><span class="required">*</span>
+                                    <input type="number" class="quant" id="paramFieldValue" name="OrderList[0].Quantity" value="" placeholder="Quantity" />
                                 </div>
-                            </td>
-                        </tr>
+                                <div class="col-sm-3">
+                                    <label>Milligrams:</label><span class="required">*</span>
+                                    <input type="number" class="mil" id="paramMilValue" name="OrderList[0].Milligrams" value="" placeholder="Milligrams" />
+                                </div>
+                            </div>
+                        </div>
+                        <a href="javascript:void(0);" id="add_field_button" class="addCF" style="margin-top: 500px;">+ Add Products</a>
+                   
+                        <div class="form-group" style="margin-top:30px;">
+                            <label>Estimated Price of Items:</label><span class="required">*</span>
+                            <input type="number" class="estPrice" id="estPrice" name="OrderList[0].EstimatedPrice" placeholder="Max. PHP 2000.00" />
+                            <span id="error_estPrice" class="text-danger"></span>
+                        </div>
 
-                    </table>
-                    <a href="javascript:void(0);" id="add_field_button" class="addCF">+ Add Products</a>
-
-                    <div class="form-group" style="margin-top:30px;">
-                        <label>Estimated Price of Items:</label><span class="required">*</span>
-                        <input type="number" class="estPrice" id="estPrice" name="OrderList[0].EstimatedPrice" placeholder="Max. PHP 2000.00" />
-                        <span id="error_estPrice" class="text-danger"></span>
+                        <div class="form-group">
+                            <label style="margin-top:10px;">Instructions</label>
+                            <br />
+                            <textarea style="resize:none;" rows="5" cols="144" name="OrderList[0].Instructions" placeholder="Type your Instructions for your orders here" class="textarea"></textarea>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label style="margin-top:10px;">Instructions</label>
-                        <br />
-                        <textarea style="resize:none;" rows="5" cols="144" name="OrderList[0].Instructions" placeholder="Type your Instructions for your orders here" class="textarea"></textarea>
-                    </div>
-                </div>
                     <br />
                     <div align="center">
                         <button type="button" name="previous_btn_order_details" id="previous_btn_order_details">Previous</button>
                         <button type="button" name="btn_order_details" id="btn_order_details">Next</button>
                     </div>
                     <br />
-                    @*</div>*@
                 </div>
 
                 <div class="tab-pane fade" id="contact_details">
                     <div class="headingIndicator">Upload Prescription and Valid ID</div>
-                    @*<div class="panel panel-default">
-                        <div class="panel-heading">Upload Prescription and Valid ID</div>*@
                     <div class="panel-body">
                         <label>Prescription:</label><span class="required">*</span>
                         <div class="custom-file mb-3">
@@ -202,17 +157,13 @@
                         <br />
                         <div align="center">
                             <button type="button" name="previous_btn_upload_details" id="previous_btn_upload_details">Previous</button>
-                            @*<button type="button" name="btn_upload_details" id="btn_upload_details" class="btn btn-success btn-lg">Next</button>*@
                             <button type="button" name="btn_upload_details" id="btn_upload_details" onclick="selectedPaymentName()">Next</button>
                         </div>
                         <br />
                     </div>
-                    @*</div>*@
                 </div>
                 <div class="tab-pane fade" id="payment_details">
                     <div class="headingIndicator">Upload Prescription and Valid ID</div>
-                    @*<div class="panel panel-default">
-                        <div class="panel-heading">Select Payment Method</div>*@
                     <div class="panel-body">
                         <label class="control-label">Payment Method</label><span class="required">*</span>
                         <select asp-for="MethodID" class="form-control" id="paymentMethod" onchange="selectedPaymentName()" asp-items="@(new SelectList(categoryList, "PaymentMethodID", "Method"))">
@@ -292,12 +243,9 @@
                         </div>
                         <br />
                     </div>
-                    @*</div>*@
                 </div>
                 <div class="tab-pane fade" id="confirm_details">
                     <div class="headingIndicator">Confirm Details</div>
-                    @*<div class="panel panel-default">
-                        <div class="panel-heading">Confirm Details</div>*@
                     <div class="panel-body">
                         <table class="confTable">
                             <tr class="trConf">
@@ -328,7 +276,6 @@
                                 <td class="tdConf" id="confEmail"></td>
                             </tr>
                         </table>
-                        @*<label class="custom-file-label" for="customFile">Upload Prescription</label>*@
                         <table class="confTable">
                             <tr>
                                 <th class="header">Products Orders</th>
@@ -379,11 +326,9 @@
                         <div align="center">
                             <button type="button" name="previous_btn_confirm_details" id="previous_btn_confirm_details">Previous</button>
                             <button type="submit" name="btn_confirm_details" id="btn_confirm_details" class="submit">Place Order</button>
-                            @*<input type="submit" value="Place Order" class="submit" />*@
                         </div>
                         <br />
                     </div>
-                    @*</div>*@
                 </div>
             </div>
         </div>
@@ -405,6 +350,98 @@
             }
         });
     });
+    $(document).ready(function () {
+        var numberIncr = 1; // used to increment the name for the inputs
+        var maxFields = 10;
+        var x = 1;
+        function addInput() {
+
+            if (x < maxFields) {
+                $('#inputs').append($('<div class="row"><div class="col-sm-6"><label>Product Name:</label><span class="required">*</span><input type="text" class="prodName" name="OrderList[' + numberIncr + '].ProductName" placeholder="Product Name" /></div><div class="col-sm-3"><label>Quantity:</label><span class="required">*</span><input type="number" class="quant" name="OrderList[' + numberIncr + '].Quantity" placeholder="Quantity" /></div><div class="col-sm-3"><label>Milligrams:</label><span class="required">*</span><input type="number" class="mil" name="OrderList[' + numberIncr + '].Milligrams" placeholder="Milligrams"/></div><a href="javascript:void(0);" id="remove_field" class="remCF">Remove Product</a></div>'));
+                numberIncr++;
+                x++;
+            }
+            else {
+                swal("Maximum of 10 Product Fields only.");
+            }
+        }
+        $("#inputs").on('click', '.remCF', function () {
+            $(this).parent().remove();
+            x--;
+        });
+        $('#btn_order_details').on('click', function (event) {
+
+            $('input.prodName').each(function () {
+                $(this).rules("add", {
+                    required: true,
+
+                })
+            });
+
+            $('input.quant').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    max: 10
+                })
+            });
+
+            $('input.mil').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                })
+            });
+
+            $('input.estPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    max: 2000.00
+                })
+            });
+
+            // prevent default submit action
+            event.preventDefault();
+
+            // test if form is valid
+            if ($('form.commentForm').validate().form()) {
+                console.log("validates");
+                $('#list_personal_details').removeClass('active active_tab1');
+                $('#list_personal_details').removeAttr('href data-toggle');
+                $('#personal_details').removeClass('active');
+                $('#list_personal_details').addClass('inactive_tab1');
+                $('#list_contact_details').removeClass('inactive_tab1');
+                $('#list_contact_details').addClass('active_tab1 active');
+                $('#list_contact_details').attr('href', '#contact_details');
+                $('#list_contact_details').attr('data-toggle', 'tab');
+                $('#contact_details').addClass('active in');
+            } else {
+                console.log("does not validate");
+                return false;
+            }
+
+
+        });
+
+        $('#previous_btn_upload_details').click(function () {
+            $('#list_contact_details').removeClass('active active_tab1');
+            $('#list_contact_details').removeAttr('href data-toggle');
+            $('#contact_details').removeClass('active in');
+            $('#list_contact_details').addClass('inactive_tab1');
+            $('#list_personal_details').removeClass('inactive_tab1');
+            $('#list_personal_details').addClass('active_tab1 active');
+            $('#list_personal_details').attr('href', '#personal_details');
+            $('#list_personal_details').attr('data-toggle', 'tab');
+            $('#personal_details').addClass('active in');
+        });
+
+      
+        // set handler for addInput button click
+        $("#add_field_button").on('click', addInput);
+
+        // initialize the validator
+        $('form.commentForm').validate();
+
+    });
+    
     //for credit card option select
     var payment = document.getElementById('paymentMethod');
     var form = document.getElementById('creditCardForm');
@@ -460,7 +497,7 @@
         document.getElementById("confDelAddress").innerHTML = address;
         document.getElementById("confContactNo").innerHTML = cn;
         document.getElementById("confEmail").innerHTML = email;
-        document.getElementById("confEstPrice").innerHTML = "PHP "+ estPrice;
+        document.getElementById("confEstPrice").innerHTML = "PHP " + estPrice;
 
 
         var l = $('.prodName').length;
@@ -524,35 +561,9 @@
 
     }
 
-
-
-    //Dynamic Input Fields
-    var i = 0; // Start at 0
-    var maxFields = 10;
-    $(document).ready(function () {
-        var x = 1;
-        $(".addCF").click(function () {
-            i++;
-            if (x < maxFields) {
-                x++;
-                console.log(i);
-                var newRow = $("#template").clone().removeAttr("hidden").removeAttr("aria-hidden"); // Clone template and make it visible
-                $(newRow).html(newRow.html().replace(/%/g, i)); // Replace the % by the i number
-                $("#paramsFields").append(newRow);
-            }
-        });
-        $("#paramsFields").on('click', '.remCF', function () {
-            $(this).parent().parent().remove();
-            x--;
-        });
-
-    });
     // Add the following code if you want the name of the file appear on select
     $(".custom-file-input").on("change", function () {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
-    //function pageUnload() {
-    //    return "The data on this page will be lost if you leave";
-    //}
 </script>
