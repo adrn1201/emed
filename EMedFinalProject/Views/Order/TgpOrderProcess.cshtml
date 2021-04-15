@@ -339,11 +339,13 @@
                                 <th class="thConf">Product Name</th>
                                 <th class="thConf">Quantity</th>
                                 <th class="thConf">Milligrams</th>
+                                <th class="thConf">Estimated Price</th>
                             </tr>
                             <tr class="trConf">
                                 <td class="tdConf" id="confProd"></td>
                                 <td class="tdConf" id="confMil"></td>
                                 <td class="tdConf" id="confQuantity"></td>
+                                <td class="tdConf" id="confEstPrice"></td>
                             </tr>
                         </table>
                         <table class="confTable">
@@ -451,13 +453,13 @@
         var address = document.getElementById("delivAdd").value;
         var cn = document.getElementById("contactNo").value;
         var email = document.getElementById("email").value;
-
+        var estPrice = document.getElementById("estPrice").value;
         //Set Values
         document.getElementById("confFullName").innerHTML = lName + ", " + fName;
         document.getElementById("confDelAddress").innerHTML = address;
         document.getElementById("confContactNo").innerHTML = cn;
         document.getElementById("confEmail").innerHTML = email;
-
+        document.getElementById("confEstPrice").innerHTML = "PHP " + estPrice;
 
         var l = $('.prodName').length;
         //Initialize default array
