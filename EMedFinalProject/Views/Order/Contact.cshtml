@@ -1,0 +1,64 @@
+﻿@model EMedFinalProject.Models.Contact
+
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_ContactLayout.cshtml";
+}
+
+<div id="terms" class="d-flex align-items-center">
+    <div class="container" data-aos="zoom-out" data-aos-delay="100">
+        <h1 style="color:black; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            <span style="color:blue;">C</span>ontact <span style="color:red">U</span>s
+        </h1>
+        <h2>Send us your Inquiries</h2>
+    </div>
+</div>
+<div class="container">
+
+    @if (ViewBag.Message != null)
+    {
+        <script>
+            swal("Inquiry Sent!","Please check your email for more details.", "success");
+        </script>
+    }
+    <form asp-action="Contact" id="regForm">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="headingIndicator">Contact Us</div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input asp-for="SenderName" class="form-control" placeholder="Your Name" />
+                    <span asp-validation-for="SenderName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input asp-for="Email" class="form-control" placeholder="Your Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input asp-for="ContactNo" class="form-control" placeholder="Contact Number" />
+            <span asp-validation-for="ContactNo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="Subject" class="form-control" placeholder="Subject" />
+            <span asp-validation-for="Subject" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <textarea asp-for="Message" rows="5" class="form-control" placeholder="Message" style="resize:none;"></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
+        </div>
+        <div class="text-center">
+            <input type="submit" value="Send Message" class="submit" />
+        </div>
+    </form>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

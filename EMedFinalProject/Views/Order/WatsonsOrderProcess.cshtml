@@ -336,6 +336,13 @@
 </div>
 
 <script>
+    function selectedSubjectName() {
+        var subjectIdNode = document.getElementById('branchSelect');
+        var value = subjectIdNode.options[subjectIdNode.selectedIndex].text;
+        var res = document.getElementById('confSelectedBranch');
+        res.innerHTML = value;
+    }
+
     $('.submit').click(function (e) {
         e.preventDefault();
         let form = $(this).parents('form');
@@ -472,15 +479,6 @@
 
 
     }
-
-
-    function selectedSubjectName() {
-        var subjectIdNode = document.getElementById('branchSelect');
-        var value = subjectIdNode.options[subjectIdNode.selectedIndex].text;
-        var res = document.getElementById('confSelectedBranch');
-        res.innerHTML = value;
-    }
-
 
     function getInputValue() {
 

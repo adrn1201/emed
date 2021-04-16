@@ -8,6 +8,8 @@ using EMedFinalProject.Data;
 using EMedFinalProject.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using System.Net;
+using System.Net.Mail;
 
 namespace EMedFinalProject.Controllers
 {
@@ -26,10 +28,46 @@ namespace EMedFinalProject.Controllers
             return View();
         }
 
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Contact(Contact record)
+        {
+            using (MailMessage mail = new MailMessage("emed.webdevt.team@gmail.com", record.Email))
+            {
+                mail.Subject = record.Subject;
+
+                string message = "Hello, " + record.SenderName + "<br/><br/>" +
+                    "We have received your inquiry. Here are the details: <br/><br/>" +
+                    "Contact Number: <strong>" + record.ContactNo + "</strong><br/>" +
+                    "Message:<br/><strong>" + record.Message + "</strong><br/><br/>" +
+                    "Please wait for our reply. Thank you!";
+
+                mail.Body = message;
+                mail.IsBodyHtml = true;
+
+                using (SmtpClient smtp = new SmtpClient())
+                {
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred =
+                        new NetworkCredential("emed.webdevt.team@gmail.com", "e-MedPassword");
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mail);
+                    ViewBag.Message = "Inquiry sent";
+                }
+            }
+            return View();
+        }
+
         public async Task<IActionResult> ConfirmedOrders()
         {
             return View(await _context.Orders.ToListAsync());
-           
+
         }
 
         public IActionResult ModifyStatus(int? id)
@@ -53,7 +91,7 @@ namespace EMedFinalProject.Controllers
             var order = _context.Orders.Where(i => i.OrderID == id).SingleOrDefault();
             order.DateModified = DateTime.Now;
             order.Status = record.Status;
-           
+
             _context.Orders.Update(order);
             _context.SaveChanges();
 
@@ -63,7 +101,7 @@ namespace EMedFinalProject.Controllers
 
         public IActionResult MercuryTerms()
         {
- 
+
             return View();
         }
         public IActionResult WatsonsTerms()
@@ -147,7 +185,7 @@ namespace EMedFinalProject.Controllers
                 }
 
                 _context.Orders.Add(order);
-               
+
 
 
                 foreach (var productOrders in record.OrderList)
@@ -165,6 +203,32 @@ namespace EMedFinalProject.Controllers
                     _context.OrderDetails.Add(products);
                 }
                 _context.SaveChanges();
+
+                //using (MailMessage mail = new MailMessage("emed.webdevt.team@gmail.com", record.Email))
+                //{
+                //    mail.Subject = "Order Placement Status";
+
+                //    string message = "Hello, " + record.LastName +", "+ record.FirstName + "<br/><br/>" +
+                //        "Your Order Number is:<strong>"+record.Orders.OrderID +"</strong><br/><br/>" +
+                //        "Ordered Products: <strong>" + record.OrderList + "</strong><br/>" +
+                //        "Your order has successfully been placed. Thank you!";
+
+                //    mail.Body = message;
+                //    mail.IsBodyHtml = true;
+
+                //    using (SmtpClient smtp = new SmtpClient())
+                //    {
+                //        smtp.Host = "smtp.gmail.com";
+                //        smtp.EnableSsl = true;
+                //        NetworkCredential NetworkCred =
+                //            new NetworkCredential("emed.webdevt.team@gmail.com", "e-MedPassword");
+                //        smtp.UseDefaultCredentials = false;
+                //        smtp.Credentials = NetworkCred;
+                //        smtp.Port = 587;
+                //        smtp.Send(mail);
+                //        ViewBag.Message = "Inquiry sent";
+                //    }
+                //}
 
 
                 return RedirectToAction("Home", new { success = true });
