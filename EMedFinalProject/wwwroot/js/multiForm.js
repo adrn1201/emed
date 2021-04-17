@@ -307,46 +307,46 @@
     });
 
     //5th Step Select Payment Method
-    $('#btn_payment_details').click(function () {
-        var error_paymentMethod = '';
+    //$('#btn_payment_details').click(function () {
+    //    var error_paymentMethod = '';
 
-        //Validate prescription Field
-        if ($.trim($('#paymentMethod').val()).length == 0) {
-            error_paymentMethod = 'Choosing of Payment Method is Required';
-            $('#error_paymentMethod').text(error_paymentMethod);
-            $('#paymentMethod').addClass('has-error');
-        } else {
-            error_paymentMethod = '';
-            $('#error_paymentMethod').text(error_paymentMethod);
-            $('#paymentMethod').removeClass('has-error');
-        }
+    //    //Validate prescription Field
+    //    if ($.trim($('#paymentMethod').val()).length == 0) {
+    //        error_paymentMethod = 'Choosing of Payment Method is Required';
+    //        $('#error_paymentMethod').text(error_paymentMethod);
+    //        $('#paymentMethod').addClass('has-error');
+    //    } else {
+    //        error_paymentMethod = '';
+    //        $('#error_paymentMethod').text(error_paymentMethod);
+    //        $('#paymentMethod').removeClass('has-error');
+    //    }
 
-        if (error_paymentMethod != '') {
-            return false;
-        } else {
-            $('#list_payment_details').removeClass('active active_tab1');
-            $('#list_payment_details').removeAttr('href data-toggle');
-            $('#payment_details').removeClass('active');
-            $('#list_payment_details').addClass('inactive_tab1');
-            $('#list_confirmation_details').removeClass('inactive_tab1');
-            $('#list_confirmation_details').addClass('active_tab1 active');
-            $('#list_confirmation_details').attr('href', '#contact_details');
-            $('#list_confirmation_details').attr('data-toggle', 'tab');
-            $('#confirm_details').addClass('active in');
-        }
-    });
+    //    if (error_paymentMethod != '') {
+    //        return false;
+    //    } else {
+    //        $('#list_payment_details').removeClass('active active_tab1');
+    //        $('#list_payment_details').removeAttr('href data-toggle');
+    //        $('#payment_details').removeClass('active');
+    //        $('#list_payment_details').addClass('inactive_tab1');
+    //        $('#list_confirmation_details').removeClass('inactive_tab1');
+    //        $('#list_confirmation_details').addClass('active_tab1 active');
+    //        $('#list_confirmation_details').attr('href', '#contact_details');
+    //        $('#list_confirmation_details').attr('data-toggle', 'tab');
+    //        $('#confirm_details').addClass('active in');
+    //    }
+    //});
 
-    $('#previous_btn_confirm_details').click(function () {
-        $('#list_confirmation_details').removeClass('active active_tab1');
-        $('#list_confirmation_details').removeAttr('href data-toggle');
-        $('#confirm_details').removeClass('active in');
-        $('#list_confirmation_details').addClass('inactive_tab1');
-        $('#list_payment_details').removeClass('inactive_tab1');
-        $('#list_payment_details').addClass('active_tab1 active');
-        $('#list_payment_details').attr('href', '#personal_details');
-        $('#list_payment_details').attr('data-toggle', 'tab');
-        $('#payment_details').addClass('active in');
-    });
+    //$('#previous_btn_confirm_details').click(function () {
+    //    $('#list_confirmation_details').removeClass('active active_tab1');
+    //    $('#list_confirmation_details').removeAttr('href data-toggle');
+    //    $('#confirm_details').removeClass('active in');
+    //    $('#list_confirmation_details').addClass('inactive_tab1');
+    //    $('#list_payment_details').removeClass('inactive_tab1');
+    //    $('#list_payment_details').addClass('active_tab1 active');
+    //    $('#list_payment_details').attr('href', '#personal_details');
+    //    $('#list_payment_details').attr('data-toggle', 'tab');
+    //    $('#payment_details').addClass('active in');
+    //});
 
     ////6th Step Submission
     //$('#btn_confirm_details').click(function () {

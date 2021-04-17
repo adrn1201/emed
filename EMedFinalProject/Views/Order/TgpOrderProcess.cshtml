@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="payment_details">
-                    <div class="headingIndicator">Upload Prescription and Valid ID</div>
+                    <div class="headingIndicator">Choose a Payment Method</div>
                     <div class="panel-body">
                         <label class="control-label">Payment Method</label><span class="required">*</span>
                         <select asp-for="MethodID" class="form-control" id="paymentMethod" onchange="selectedPaymentName()" asp-items="@(new SelectList(categoryList, "PaymentMethodID", "Method"))">
@@ -175,22 +175,21 @@
                         <div id="creditCardForm" style="margin-bottom: 5px;">
                             <div class="form-group">
                                 <label for="">Cardholder's Name: <span class="required">*</span></label>
-                                <input type="text" name="credNumber" id="credNumber" placeholder="Enter Cardolder's Name" class="form-control">
-                                <span id="error_creditCard" class="text-danger"></span>
+                                <input type="text" name="holderName" id="holderName" placeholder="Enter Cardholder's Name" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Cardholder's Address:<span class="required">*</span></label>
-                                <input type="text" name="" placeholder="Enter Cardholder's Address" id="" class="form-control">
+                                <input type="text" name="cardAddress" placeholder="Enter Cardholder's Address" id="cardAddress" class="form-control">
                             </div>
                             <div>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        Card Number (Visa and MasterCard only):<span class="required">*</span>
-                                        <input type="text" name="" placeholder="Enter Card Number" id="" class="form-control">
+                                        <label>Card Number (Visa and MasterCard only):</label><span class="required">*</span>
+                                        <input type="text" name="cardNumber" placeholder="Enter Card Number" id="cardNumber" class="form-control">
                                     </div>
                                     <div class="col-sm-6">
-                                        Issuing Bank:<span class="required">*</span>
-                                        <input type="text" name="" placeholder="Enter Issuing Bank" id="" class="form-control">
+                                        <label>Issuing Bank:</label><span class="required">*</span>
+                                        <input type="text" name="bank" placeholder="Enter Issuing Bank" id="bank" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -198,40 +197,20 @@
                             <div>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        CVV/CVC:<span class="required">*</span>
-                                        <input type="text" name="" placeholder="Enter CVV" id="" class="form-control">
+                                        <label>CVV/CVC:</label><span class="required">*</span>
+                                        <input type="number" name="cvvCvc" placeholder="Enter CVV" id="cvvCvc" class="form-control">
                                     </div>
+
                                     <div class="col-sm-3">
-                                        Expiry Date:<span class="required">*</span>
-                                        <select placeholder="Month" class="form-control" id="sel1">
-                                            <option>--Select Month--</option>
-                                            <option>01</option>
-                                            <option>02</option>
-                                            <option>03</option>
-                                            <option>04</option>
-                                            <option>05</option>
-                                            <option>06</option>
-                                            <option>07</option>
-                                            <option>08</option>
-                                            <option>09</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
+                                        <label>Expiry Month:</label><span class="required">*</span>
+                                        <input type="text" name="month" id="month" class="form-control" placeholder="MM" />
                                     </div>
+
                                     <div class="col-sm-3">
-                                        Year<span class="required">*</span>
-                                        <select placeholder="Month" class="form-control" id="sel1">
-                                            <option>--Select Year--</option>
-                                            <option>2021</option>
-                                            <option>2022</option>
-                                            <option>2023</option>
-                                            <option>2024</option>
-                                            <option>2025</option>
-                                            <option>2026</option>
-                                            <option>2027</option>
-                                        </select>
+                                        <label>Expiry Year:</label><span class="required">*</span>
+                                        <input type="text" name="year" id="year" class="form-control" placeholder="YYYY" />
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -439,6 +418,117 @@
             $('#personal_details').addClass('active in');
         });
 
+        $.validator.addMethod('BankName', function (value, element, param) {
+            var isValid;
+            if ($('input#bank').val() == 'Metrobank' || $('input#bank').val() == 'Security Bank' || $('input#bank').val() == 'BPI' || $('input#bank').val() == 'ChinaBank' || $('input#bank').val() == 'UnionBank' || $('input#bank').val() == 'PNB' || $('input#bank').val() == 'RCBC') {
+                isValid = true;
+                return isValid; // return bool here if valid or not.
+            }
+
+        }, 'Not a Valid Bank Name in the PH.');
+
+        $.validator.addMethod('CVV', function (value, element, param) {
+            var isValid;
+            if ($('input#cvvCvc').val().length == 3) {
+                isValid = true;
+                return isValid;
+            }
+
+        }, '3 Digits for CVV/CVC');
+
+        $.validator.addMethod('MM', function (value, element, param) {
+            var isValid;
+            if ($('input#month').val().length == 2 && $('input#month').val() == 01 || $('input#month').val() == 02 || $('input#month').val() == 03 || $('input#month').val() == 04 || $('input#month').val() == 05 || $('input#month').val() == 06 || $('input#month').val() == 07 || $('input#month').val() == 08 || $('input#month').val() == 09 || $('input#month').val() == 10 || $('input#month').val() == 11 || $('input#month').val() == 12) {
+                isValid = true;
+                return isValid;
+            }
+
+        }, 'Enter a valid Month.');
+        $.validator.addMethod('YYYY', function (value, element, param) {
+            var isValid;
+            if ($('input#year').val().length == 4) {
+                isValid = true;
+                return isValid;
+            }
+
+        }, 'Enter a valid Year.');
+
+        $('#btn_payment_details').on('click', function (event) {
+
+            $('select#paymentMethod').rules("add", {
+                required: true,
+            });
+
+            $('input#holderName').rules("add", {
+                required: true,
+                lettersonly: true,
+            });
+
+            $('input#cardAddress').rules("add", {
+                required: true,
+            });
+
+            $('input#cardNumber').rules("add", {
+                required: true,
+                creditcard: true,
+            });
+
+            $('input#bank').rules("add", {
+                required: true,
+                BankName: true,
+            });
+
+
+            $('input#cvvCvc').rules("add", {
+                required: true,
+                CVV: true,
+            });
+
+            $('input#month').rules("add", {
+                required: true,
+                MM: true,
+            });
+
+            $('input#year').rules("add", {
+                required: true,
+                YYYY: true,
+            });
+            // prevent default submit action
+            event.preventDefault();
+
+            // test if form is valid
+            if ($('form.commentForm').validate().form()) {
+                console.log("validates");
+                $('#list_payment_details').removeClass('active active_tab1');
+                $('#list_payment_details').removeAttr('href data-toggle');
+                $('#payment_details').removeClass('active');
+                $('#list_payment_details').addClass('inactive_tab1');
+                $('#list_confirmation_details').removeClass('inactive_tab1');
+                $('#list_confirmation_details').addClass('active_tab1 active');
+                $('#list_confirmation_details').attr('href', '#contact_details');
+                $('#list_confirmation_details').attr('data-toggle', 'tab');
+                $('#confirm_details').addClass('active in');
+            } else {
+                console.log("does not validate");
+                return false;
+            }
+
+
+        });
+
+        $('#previous_btn_confirm_details').click(function () {
+            $('#list_confirmation_details').removeClass('active active_tab1');
+            $('#list_confirmation_details').removeAttr('href data-toggle');
+            $('#confirm_details').removeClass('active in');
+            $('#list_confirmation_details').addClass('inactive_tab1');
+            $('#list_payment_details').removeClass('inactive_tab1');
+            $('#list_payment_details').addClass('active_tab1 active');
+            $('#list_payment_details').attr('href', '#personal_details');
+            $('#list_payment_details').attr('data-toggle', 'tab');
+            $('#payment_details').addClass('active in');
+        });
+
+
 
         // set handler for addInput button click
         $("#add_field_button").on('click', addInput);
@@ -469,7 +559,6 @@
                 break;
             case 2:
                 form.style.display = "block";
-                /*not sure which results you want here*/
                 break;
             default:
                 break;
@@ -478,6 +567,30 @@
 
 
     }
+
+    //function test() {
+    //    /*not sure which results you want here*/
+    //    $('#btn_payment_details').click(function (event) {
+    //        jQuery.validator.setDefaults({
+    //            debug: true,
+    //            success: "valid"
+    //        });
+    //        $("#order_form").validate({
+    //            rules: {
+    //                credNumber: {
+    //                    required: true,
+    //                    creditcard: true
+    //                }
+    //            }
+    //        });
+    //        event.preventDefault();
+    //    });
+    //}
+    //$(document).ready(function () {
+    //    test()
+    //});
+
+
 
     function getInputValue() {
 

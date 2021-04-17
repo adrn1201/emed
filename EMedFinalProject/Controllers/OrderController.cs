@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EMedFinalProject.Controllers
 {
@@ -64,12 +65,13 @@ namespace EMedFinalProject.Controllers
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> ConfirmedOrders()
         {
             return View(await _context.Orders.ToListAsync());
 
         }
-
+        [Authorize]
         public IActionResult ModifyStatus(int? id)
         {
             if (id == null)
@@ -86,6 +88,7 @@ namespace EMedFinalProject.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult ModifyStatus(int? id, Order record)
         {
             var order = _context.Orders.Where(i => i.OrderID == id).SingleOrDefault();
