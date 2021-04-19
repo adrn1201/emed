@@ -8,6 +8,7 @@ namespace EMedFinalProject.Models
     public class OrderViewModel
     {
         //public int OrderID { get; set; }
+        //public object Code { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string DeliveryAddress { get; set; }
@@ -22,6 +23,8 @@ namespace EMedFinalProject.Models
         public List<Branch> Branches { get; set; }
         public int BranchID { get; set; }
         public OrdersDetail OrderDetails { get; set; }
+
+        public List<OrdersDetail> Details { get; set; }
         public List<OrderDetailsViewModel> OrderList { get; set; }
         public PaymentMethod PaymentMethods { get; set; }
 

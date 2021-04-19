@@ -1,0 +1,102 @@
+﻿@model EMedFinalProject.Models.Order
+
+@{
+    ViewData["Title"] = "Order Details";
+    Layout = "~/Views/Shared/_EditLayout.cshtml";
+}
+
+<h2 style="color:blue; margin-bottom:30px;">E<span class="Dash" style="color: pink;">-</span><span class="Dash" style="color:Red;">Med</span><span style="Color:black; float: right;">Complete Customer Details</span></h2>
+<div>
+    <a asp-action="ConfirmedOrders">Back to OrderList</a>
+    <br />
+    <br />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Code:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+        <dt class="col-sm-2">
+            Lastname:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            Firstname:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            Delivery Address:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeliveryAddress)
+        </dd>
+        <dt class="col-sm-2">
+            Contact No:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ContactNo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValidID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValidID)
+        </dd>
+        <dt class="col-sm-2">
+            Selected Branch:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Branch.BranchLocation)
+        </dd>
+        <dt class="col-sm-2">
+            Payment Method:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PaymentMethod.Method)
+        </dd>
+        <dt class="col-sm-2">
+            Products Ordered:
+        </dt>
+        <dd class="col-sm-10">
+            <a href="@(Url.Action("ConfirmedOrderDetails","Order", new { id=Model.OrderID}))">View</a>
+        </dd>
+        <dt class="col-sm-2">
+            Date Added:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateAdded)
+        </dd>
+        <dt class="col-sm-2">
+            Date Modified:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateModified)
+        </dd>
+        <dt class="col-sm-2">
+            Order Status:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+</div>
+<div>
+
+</div>

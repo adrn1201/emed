@@ -60,6 +60,7 @@ namespace EMedFinalProject.Controllers
                     smtp.Port = 587;
                     smtp.Send(mail);
                     ViewBag.Message = "Inquiry sent";
+                    ModelState.Clear();
                 }
             }
             return View();
@@ -69,6 +70,37 @@ namespace EMedFinalProject.Controllers
         public async Task<IActionResult> ConfirmedOrders()
         {
             return View(await _context.Orders.ToListAsync());
+        }
+
+        [Authorize]
+        public async Task<IActionResult> OrderDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var order = await _context.Orders.Include(p=>p.PaymentMethod).Include(b =>b.Branch).FirstOrDefaultAsync(m => m.OrderID == id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return View(order);
+        }
+        [Authorize]
+        public async Task<IActionResult> ConfirmedOrderDetails(int? id)
+        {
+            var applicationDbContext = await _context.OrderDetails.Include(b => b.Order).ToListAsync();
+            if (id != null)
+            {
+                applicationDbContext = await _context.OrderDetails.Include(b => b.Order).Where(b => b.Order.OrderID == (int)id).ToListAsync();
+
+            }
+            var model = new OrderViewModel();
+            model.Details = applicationDbContext;
+            return View(model);
+            //return View(await _context.Orders.ToListAsync());
 
         }
         [Authorize]
@@ -170,10 +202,11 @@ namespace EMedFinalProject.Controllers
                         validId.CopyTo(stream);
                     }
                 }
-
+               
                 var branch = await _context.Branches.Where(b => b.BranchId == record.BranchID).SingleOrDefaultAsync();
                 var order = new Order();
                 {
+                    order.Code = Guid.NewGuid().ToString("N");
                     order.LastName = record.LastName;
                     order.FirstName = record.FirstName;
                     order.DeliveryAddress = record.DeliveryAddress;
@@ -184,6 +217,7 @@ namespace EMedFinalProject.Controllers
                     order.PaymentMethodID = record.MethodID;
                     order.Prescription = record.Prescription;
                     order.ValidID = record.ValidID;
+                    order.Status = OrderStatus.Pending;
 
                 }
 
@@ -207,35 +241,34 @@ namespace EMedFinalProject.Controllers
                 }
                 _context.SaveChanges();
 
-                //using (MailMessage mail = new MailMessage("emed.webdevt.team@gmail.com", record.Email))
-                //{
-                //    mail.Subject = "Order Placement Status";
+                using (MailMessage mail = new MailMessage("emed.webdevt.team@gmail.com", record.Email))
+                {
+                    mail.Subject = "Order Placement";
+                    string message = "Hello " + record.LastName + ", " + record.FirstName + "!<br/><br/>" +
+                        "Your Order Number is: <strong>" + order.Code + "</strong><br/>" +
+                        "<strong>Your Order has successfully been placed!</strong><br/><br/>" +
+                        "Please wait for our email regarding the updates on your order. Thank you!";
 
-                //    string message = "Hello, " + record.LastName +", "+ record.FirstName + "<br/><br/>" +
-                //        "Your Order Number is:<strong>"+record.Orders.OrderID +"</strong><br/><br/>" +
-                //        "Ordered Products: <strong>" + record.OrderList + "</strong><br/>" +
-                //        "Your order has successfully been placed. Thank you!";
+                    mail.Body = message;
+                      
+                    mail.IsBodyHtml = true;
 
-                //    mail.Body = message;
-                //    mail.IsBodyHtml = true;
-
-                //    using (SmtpClient smtp = new SmtpClient())
-                //    {
-                //        smtp.Host = "smtp.gmail.com";
-                //        smtp.EnableSsl = true;
-                //        NetworkCredential NetworkCred =
-                //            new NetworkCredential("emed.webdevt.team@gmail.com", "e-MedPassword");
-                //        smtp.UseDefaultCredentials = false;
-                //        smtp.Credentials = NetworkCred;
-                //        smtp.Port = 587;
-                //        smtp.Send(mail);
-                //        ViewBag.Message = "Inquiry sent";
-                //    }
-                //}
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential NetworkCred =
+                            new NetworkCredential("emed.webdevt.team@gmail.com", "e-MedPassword");
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = NetworkCred;
+                        smtp.Port = 587;
+                        smtp.Send(mail);
+                        ViewBag.Message = "Inquiry sent";
+                    }
+                }
 
 
                 return RedirectToAction("Home", new { success = true });
-                //return RedirectToAction("OrderForm", "Account", new { success = "yes" });
 
             }
             return View();
@@ -300,6 +333,7 @@ namespace EMedFinalProject.Controllers
                 var branch = await _context.Branches.Where(b => b.BranchId == record.BranchID).SingleOrDefaultAsync();
                 var order = new Order();
                 {
+                    order.Code = Guid.NewGuid().ToString("N");
                     order.LastName = record.LastName;
                     order.FirstName = record.FirstName;
                     order.DeliveryAddress = record.DeliveryAddress;
@@ -310,6 +344,7 @@ namespace EMedFinalProject.Controllers
                     order.PaymentMethodID = record.MethodID;
                     order.Prescription = record.Prescription;
                     order.ValidID = record.ValidID;
+                    order.Status = OrderStatus.Pending;
 
                 }
 
@@ -333,6 +368,31 @@ namespace EMedFinalProject.Controllers
                 }
                 _context.SaveChanges();
 
+                using (MailMessage mail = new MailMessage("emed.webdevt.team@gmail.com", record.Email))
+                {
+                    mail.Subject = "Order Placement";
+                    string message = "Hello " + record.LastName + ", " + record.FirstName + "!<br/><br/>" +
+                        "Your Order Number is: <strong>" + order.Code + "</strong><br/>" +
+                        "<strong>Your Order has successfully been placed!</strong><br/><br/>" +
+                        "Please wait for our email regarding the updates on your order. Thank you!";
+
+                    mail.Body = message;
+
+                    mail.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential NetworkCred =
+                            new NetworkCredential("emed.webdevt.team@gmail.com", "e-MedPassword");
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = NetworkCred;
+                        smtp.Port = 587;
+                        smtp.Send(mail);
+                        ViewBag.Message = "Inquiry sent";
+                    }
+                }
 
                 return RedirectToAction("Home", new { success = true });
                 //return RedirectToAction("OrderForm", "Account", new { success = "yes" });
@@ -400,6 +460,7 @@ namespace EMedFinalProject.Controllers
                 var branch = await _context.Branches.Where(b => b.BranchId == record.BranchID).SingleOrDefaultAsync();
                 var order = new Order();
                 {
+                    order.Code = Guid.NewGuid().ToString("N");
                     order.LastName = record.LastName;
                     order.FirstName = record.FirstName;
                     order.DeliveryAddress = record.DeliveryAddress;
@@ -410,6 +471,7 @@ namespace EMedFinalProject.Controllers
                     order.PaymentMethodID = record.MethodID;
                     order.Prescription = record.Prescription;
                     order.ValidID = record.ValidID;
+                    order.Status = OrderStatus.Pending;
 
                 }
 
@@ -433,6 +495,31 @@ namespace EMedFinalProject.Controllers
                 }
                 _context.SaveChanges();
 
+                using (MailMessage mail = new MailMessage("emed.webdevt.team@gmail.com", record.Email))
+                {
+                    mail.Subject = "Order Placement";
+                    string message = "Hello " + record.LastName + ", " + record.FirstName + "!<br/><br/>" +
+                        "Your Order Number is: <strong>" + order.Code + "</strong><br/>" +
+                        "<strong>Your Order has successfully been placed!</strong><br/><br/>" +
+                        "Please wait for our email regarding the updates on your order. Thank you!";
+
+                    mail.Body = message;
+
+                    mail.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential NetworkCred =
+                            new NetworkCredential("emed.webdevt.team@gmail.com", "e-MedPassword");
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = NetworkCred;
+                        smtp.Port = 587;
+                        smtp.Send(mail);
+                        ViewBag.Message = "Inquiry sent";
+                    }
+                }
 
                 return RedirectToAction("Home", new { success = true });
                 //return RedirectToAction("OrderForm", "Account", new { success = "yes" });

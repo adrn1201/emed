@@ -10,6 +10,7 @@ namespace EMedFinalProject.Models
     {
         [Key]
         public int OrderID { get; set; }
+        public string Code { get; set; }
 
         [Required(ErrorMessage = "LastName is Required")]
         [RegularExpression(@"^[A-Za-z]+$", ErrorMessage = "Please enter a valid LastName")]

@@ -24,19 +24,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.ContactNo)
             </th>
-
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Branch)
-                </th>*@
-            @*<th>
-                    @Html.DisplayNameFor(model => model.PaymentMethod)
-                </th>*@
             <th>
                 Email
             </th>
             <th>
+                Ordered Products
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -62,15 +59,21 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.PaymentMethod.Method)
-                    </td>*@
+                <td>
+                    <a href="@(Url.Action("ConfirmedOrderDetails","Order", new { id=item.OrderID}))">View</a>
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    <a class="btn btn-sm btn-info" asp-action="ModifyStatus" asp-route-id="@item.OrderID"><i class="fa fa-edit"></i></a>
+                    <a class="btn btn-sm btn-info" asp-action="OrderDetails" asp-route-id="@item.OrderID"><i class="fa fa-info"></i></a>
+
                 </td>
+                <td>
+
+                    <a class="btn btn-sm btn-success" asp-action="ModifyStatus" asp-route-id="@item.OrderID"><i class="fa fa-edit"></i></a>
+                </td>
+
             </tr>
         }
     </tbody>
